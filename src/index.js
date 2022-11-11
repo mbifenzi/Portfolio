@@ -1,13 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import NavBar from './components/NavBar';
+import Header from './components/Header';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+// import Test from './components/Test';
+// import Test1 from './components/Test1';
+// import Routess from './components/Routest/Routest';
+// import { BrowserRouter, Routes, Route, Link, Outlet  } from 'react-router-dom';
+// import { Test, Extra } from './components/Test';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <BrowserRouter> */}
+    <NavBar />
+    <Header />
+    <About id="about"/>
+    <Projects id="projects"/>
+    <Contact id="contacts"/>
+
+
+    {/* <Test1 />
+    <Test /> */}
+    {/* </BrowserRouter> */}
   </React.StrictMode>
 );
 
