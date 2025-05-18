@@ -159,7 +159,7 @@ export default function Home() {
               />
             ))}
           </div>
-
+ {/* test */}
           <div className="text-center">
             <Link href="/projects">
               <Button variant="outline" className="pixel-border pixel-button group">
