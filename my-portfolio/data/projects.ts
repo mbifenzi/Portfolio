@@ -17,8 +17,9 @@ export const projects: Project[] = [
   {
     id: "intranet-platform",
     title: "University Intranet System",
-    description: "An intranet system for managing university administrative processes such as congé and ordre de mission.",
-    image: "", // fill this in
+    description:
+      "An intranet system for managing university administrative processes such as congé and ordre de mission.",
+    image: "/main-intra.png",
     tags: ["Next.js", "Django", "PostgreSQL"],
     categories: ["fullstack"],
     featured: true,
@@ -29,7 +30,7 @@ export const projects: Project[] = [
     id: "mechatronics-intranet",
     title: "Mechatronics School Intranet",
     description: "A platform for mechatronics students with development tools and project mapping.",
-    image: "", // fill this in
+    image: "/mechatronics.png",
     tags: ["React", "Web Terminal", "VSCode", "Next.js"],
     categories: ["frontend"],
     featured: false,
@@ -40,18 +41,18 @@ export const projects: Project[] = [
     id: "pyccel-playground",
     title: "Pyccel Playground",
     description: "A browser-based Python-to-C++/Fortran transpiler with execution capabilities.",
-    image: "", // fill this in
+    image: "/pyccel.png",
     tags: ["Python", "Next.js", "Terminal"],
     categories: ["frontend", "ai"],
     featured: true,
-    details:
-      "Transpiles Python code to C++ and Fortran and runs it in a dedicated online terminal.",
+    details: "Transpiles Python code to C++ and Fortran and runs it in a dedicated online terminal.",
+    url: "pyccel-playground.vercel.app",
   },
   {
     id: "phd-lms",
     title: "Gamified PhD LMS",
     description: "A learning platform for PhD candidates featuring a gamified application process and quizzes.",
-    image: "", // fill this in
+    image: "/sase.png",
     tags: ["Next.js", "Gamification", "LMS"],
     categories: ["frontend"],
     featured: true,
@@ -62,11 +63,11 @@ export const projects: Project[] = [
     id: "mood2drink",
     title: "Mood To Drink",
     description: "A mobile and web app that recommends drinks based on your current mood.",
-    image: "", // fill this in
+    image: "/mood2drink.png",
     tags: ["React Native", "Next.js", "Zustand", "JSON"],
     categories: ["mobile", "frontend"],
     featured: true,
-    url: "https://mood2drink.vercel.app/",
+    url: "https://apps.apple.com/ma/app/mood-to-drink/id6743176462",
     details:
       "Suggests drinks depending on the user's mood. Includes drink filters, a surprise menu, and gamified selection tools.",
   },
@@ -74,40 +75,43 @@ export const projects: Project[] = [
     id: "car-sharing-platform",
     title: "Ok Voiture",
     description: "A car-sharing platform that connects vehicle owners with renters.",
-    image: "", // fill this in
+    image: "/okvoiture.png",
     tags: ["Next.js", "Nest.js", "PostgreSQL"],
     categories: ["fullstack"],
     featured: false,
     details:
       "Developed from scratch using a full-stack architecture. Users can list and rent vehicles, manage bookings, and communicate via the platform.",
+    github: "https://github.com/mbifenzi/OkVoiture",
   },
   {
     id: "ft-transcendence",
     title: "Ft_Transcendence",
     description: "A real-time multiplayer Pong game with chat, authentication, and user profiles.",
-    image: "", // fill this in
+    image: "/tran.png",
     tags: ["Nest.js", "PostgreSQL", "WebSockets", "Next.js"],
     categories: ["fullstack"],
     featured: false,
     details:
       "Developed as part of the 42 school curriculum. The project includes multiplayer support, live chat, friend requests, achievements, and more, with a focus on performance and user experience.",
+    github: "https://github.com/mbifenzi/ft_transcendence",
   },
   {
     id: "inception",
     title: "Inception",
     description: "Docker-based system setup and orchestration for multiple services.",
-    image: "", // fill this in
+    image: "/docker-infrastructure.png",
     tags: ["Docker", "DevOps", "Nginx", "WordPress"],
     categories: ["backend"],
     featured: false,
     details:
       "An educational DevOps project focused on deploying and managing a full infrastructure stack with Docker Compose, including WordPress, Nginx, and MariaDB.",
+    github: "https://github.com/mbifenzi/inception",
   },
   {
     id: "cub3d",
     title: "Cub3D",
     description: "A 3D raycasting game engine inspired by Wolfenstein 3D.",
-    image: "", // fill this in
+    image: "/3d-raycasting-game.png",
     tags: ["C", "Graphics", "Raycasting"],
     categories: ["frontend"],
     featured: false,
@@ -118,13 +122,24 @@ export const projects: Project[] = [
     id: "labsafe",
     title: "LabSafe",
     description: "A secure platform for managing access and safety compliance in research labs.",
-    image: "", // fill this in
+    image: "/labsafe.png",
     tags: ["Next.js", "Django", "RBAC", "Security"],
     categories: ["fullstack"],
     featured: false,
     details:
       "Built to manage lab access permissions, enforce safety compliance, and monitor researcher activity. Includes role-based access control and secure record-keeping across multiple labs and users.",
-  }
+  },
+  {
+    id: "document-review-platform",
+    title: "Document Review & Approval System",
+    description: "A submission platform with reviewer assignments, issue tracking, and threaded discussions.",
+    image: "/document.png",
+    tags: ["Next.js", "Django", "Workflow", "RBAC", "Comments"],
+    categories: ["fullstack"],
+    featured: false,
+    details:
+      "Enables users to submit documents and assign reviewers. Reviewers can create issues, engage in threaded comment discussions, and track document history and approval progress. Designed to support collaborative workflows in academic and institutional settings.",
+  },
 ]
 
 export const getProjectById = (id: string): Project | undefined => {

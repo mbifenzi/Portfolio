@@ -1,13 +1,26 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PixelatedContainer } from "@/components/pixelated-container"
 import { PixelatedHeading } from "@/components/pixelated-heading"
 import { ProjectCard } from "@/components/project-card"
 import { ProjectFilter } from "@/components/project-filter"
-import { getAllProjects } from "@/data/projects"
+import { getAllProjects, type ProjectCategory } from "@/data/projects"
 
 export default function ProjectsPage() {
   const allProjects = getAllProjects()
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">("all")
+
+  const filteredProjects =
+    activeFilter === "all"
+      ? allProjects
+      : allProjects.filter((project) => project.categories.includes(activeFilter as ProjectCategory))
+
+  const handleFilterChange = (category: ProjectCategory | "all") => {
+    setActiveFilter(category)
+  }
 
   return (
     <div className="min-h-screen bg-black text-white font-pixel">
@@ -48,10 +61,10 @@ export default function ProjectsPage() {
             to find specific types of projects.
           </p>
 
-          <ProjectFilter className="mb-12" />
+          <ProjectFilter className="mb-12" onFilterChange={handleFilterChange} activeFilter={activeFilter} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {allProjects.map((project) => (
+            {filteredProjects.map((project) => (
               <ProjectCard
                 key={project.id}
                 title={project.title}
@@ -60,6 +73,7 @@ export default function ProjectsPage() {
                 tags={project.tags}
                 github={project.github}
                 url={project.url}
+                details={project.details}
               />
             ))}
           </div>

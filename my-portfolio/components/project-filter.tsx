@@ -1,17 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { ProjectCategory } from "@/data/projects"
 
 interface ProjectFilterProps {
   className?: string
-  onFilterChange?: (category: ProjectCategory | "all") => void
+  onFilterChange: (category: ProjectCategory | "all") => void
+  activeFilter: ProjectCategory | "all"
 }
 
-export function ProjectFilter({ className, onFilterChange }: ProjectFilterProps) {
-  const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">("all")
+export function ProjectFilter({ className, onFilterChange, activeFilter }: ProjectFilterProps) {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const filters = [
     { id: "all" as const, label: "ALL" },
@@ -25,10 +30,16 @@ export function ProjectFilter({ className, onFilterChange }: ProjectFilterProps)
   ]
 
   const handleFilterChange = (filter: ProjectCategory | "all") => {
-    setActiveFilter(filter)
-    if (onFilterChange) {
-      onFilterChange(filter)
-    }
+    onFilterChange(filter)
+  }
+
+  // If we're not on the client yet, render a placeholder with the same dimensions
+  if (!isClient) {
+    return (
+      <div className={cn("flex flex-wrap justify-center gap-2 min-h-[40px]", className)}>
+        {/* Placeholder content with similar structure but no interactivity */}
+      </div>
+    )
   }
 
   return (

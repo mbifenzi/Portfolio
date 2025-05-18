@@ -11,6 +11,9 @@ import { SkillCard } from "@/components/skill-card"
 import { getFeaturedProjects } from "@/data/projects"
 import { Code, Database, Globe, Mail, Github, Linkedin, Twitter, ArrowRight } from "lucide-react"
 
+// Pre-calculate the current year to avoid hydration mismatch
+const currentYear = new Date().getFullYear()
+
 export default function Home() {
   const featuredProjects = getFeaturedProjects()
 
@@ -37,6 +40,7 @@ export default function Home() {
             pixelArtSrc="/pixel-art-developer-avatar.png"
             realPhotoSrc="/real-photo-avatar.png"
             alt="Mohamed Bifenzi"
+            initialIsPixelArt={true}
           />
         </div>
 
@@ -150,6 +154,8 @@ export default function Home() {
                 image={project.image}
                 tags={project.tags}
                 github={project.github}
+                url={project.url}
+                details={project.details}
               />
             ))}
           </div>
@@ -222,7 +228,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-6 px-4 text-center text-sm">
-        <p>© {new Date().getFullYear()} MOHAMED BIFENZI • ALL RIGHTS RESERVED</p>
+        <p>© {currentYear} MOHAMED BIFENZI • ALL RIGHTS RESERVED</p>
         <p className="mt-2 text-gray-500">CRAFTED WITH PRECISION AND PASSION</p>
       </footer>
     </div>
