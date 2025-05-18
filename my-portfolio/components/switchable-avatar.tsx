@@ -16,27 +16,18 @@ interface SwitchableAvatarProps {
 export function SwitchableAvatar({ pixelArtSrc, realPhotoSrc, alt, className }: SwitchableAvatarProps) {
   const [showPixelArt, setShowPixelArt] = useState(true)
 
+  // Simply use the current state to determine which image to show
+  const currentSrc = showPixelArt ? pixelArtSrc : realPhotoSrc
+
   return (
     <div className="relative">
-      <div className={cn("relative overflow-hidden transition-all duration-500", className)}>
-        <div className={cn("transition-opacity duration-500", showPixelArt ? "opacity-100" : "opacity-0")}>
-          <div className="relative w-full h-full">
-            <Image
-              src={pixelArtSrc || "/placeholder.svg"}
-              alt={`${alt} - Pixel Art`}
-              fill
-              className="object-cover pixel-image"
-            />
-          </div>
-        </div>
-
-        <div
-          className={cn("absolute inset-0 transition-opacity duration-500", showPixelArt ? "opacity-0" : "opacity-100")}
-        >
-          <div className="relative w-full h-full">
-            <Image src={realPhotoSrc || "/placeholder.svg"} alt={`${alt} - Real Photo`} fill className="object-cover" />
-          </div>
-        </div>
+      <div className={cn("relative overflow-hidden", className)}>
+        <Image
+          src={currentSrc || "/placeholder.svg"}
+          alt={alt}
+          fill
+          className={cn("object-cover transition-all duration-300", showPixelArt ? "pixel-image" : "")}
+        />
       </div>
 
       <Button

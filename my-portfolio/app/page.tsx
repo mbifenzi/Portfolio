@@ -211,9 +211,11 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button variant="outline" className="pixel-border pixel-button">
-              DOWNLOAD RESUME
-            </Button>
+            <a href="/Mohamed-bifenzi.pdf" download>
+              <Button variant="outline" className="pixel-border pixel-button">
+                DOWNLOAD RESUME
+              </Button>
+            </a>
           </div>
         </div>
       </PixelatedContainer>
