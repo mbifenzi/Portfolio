@@ -20,12 +20,19 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, image, tags, className, github, url, details }: ProjectCardProps) {
   const [isFullScreen, setIsFullScreen] = useState(false)
+  const placeholderImage = image || "/project-management-team.png"
 
+  // Simple function to toggle the modal
   const toggleFullScreen = () => {
     setIsFullScreen(!isFullScreen)
-  }
 
-  const placeholderImage = image || "/project-management-team.png"
+    // Toggle body scroll
+    if (!isFullScreen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+  }
 
   return (
     <>
@@ -88,34 +95,74 @@ export function ProjectCard({ title, description, image, tags, className, github
         </div>
       </div>
 
-      {/* Full Screen Image Modal */}
+      {/* Custom Modal (not using Dialog component) */}
       {isFullScreen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute top-2 right-2 z-10 bg-gray-900 bg-opacity-70 hover:bg-gray-800"
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
+        >
+          <div className="relative w-full max-w-4xl bg-gray-950 border-8 border-gray-800 overflow-hidden">
+            {/* Close button */}
+            <button
               onClick={toggleFullScreen}
+              className="absolute top-4 right-4 z-10 bg-gray-900 p-2 rounded-full hover:bg-gray-800 transition-colors"
+              aria-label="Close"
             >
-              <X className="h-5 w-5" />
-            </Button>
+              <X className="h-6 w-6" />
+            </button>
 
-            {/* Image container with fixed height */}
-            <div className="relative w-full h-[60vh] mb-4">
+            {/* Image container */}
+            <div className="relative w-full h-[60vh]">
               <Image
                 src={placeholderImage || "/placeholder.svg"}
                 alt={title}
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                priority
               />
             </div>
 
-            {/* Details container with scrolling */}
-            <div className="bg-gray-900 p-4 pixel-border overflow-y-auto max-h-[25vh]">
-              <h3 className="text-xl text-yellow-400 mb-2">{title}</h3>
-              {details && <p className="text-gray-300 whitespace-pre-line">{details}</p>}
+            {/* Project details */}
+            <div className="p-6 bg-gray-900 overflow-y-auto max-h-[30vh]">
+              <h2 className="text-2xl text-yellow-400 mb-4">{title}</h2>
+
+              {details && <p className="text-gray-300 mb-4 whitespace-pre-line">{details}</p>}
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {tags.map((tag, index) => (
+                  <span key={index} className="text-xs px-2 py-1 bg-gray-800 pixel-border-sm text-cyan-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Links */}
+              <div className="flex gap-4">
+                {github && (
+                  <Link
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                  >
+                    <Github className="h-5 w-5" />
+                    <span>View on GitHub</span>
+                  </Link>
+                )}
+                {url && (
+                  <Link
+                    href={url.startsWith("http") ? url : `https://${url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                    <span>Visit Project</span>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
