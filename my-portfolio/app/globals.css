@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "PixelFont";
+  src: url("/fonts/pixel-font.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 262 80% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 142 70% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 32 98% 65%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 85% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 262 80% 60%;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "PixelFont", monospace;
+  image-rendering: pixelated;
+}
+
+.font-pixel {
+  font-family: "PixelFont", monospace;
+  letter-spacing: 1px;
+}
+
+/* Pixel Border */
+.pixel-border {
+  border: 4px solid;
+  border-image-slice: 2;
+  border-image-width: 2;
+  border-image-outset: 0;
+  border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='white' /></svg>");
+  image-rendering: pixelated;
+  position: relative;
+}
+
+.pixel-border-sm {
+  border: 2px solid;
+  border-image-slice: 2;
+  border-image-width: 2;
+  border-image-outset: 0;
+  border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='white' /></svg>");
+  image-rendering: pixelated;
+}
+
+/* Pixel Button */
+.pixel-button {
+  transition: all 0.1s;
+  position: relative;
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-family: "PixelFont", monospace;
+}
+
+.pixel-button:hover {
+  transform: translateY(-2px);
+  background-color: #444;
+}
+
+.pixel-button:active {
+  transform: translateY(2px);
+}
+
+/* Pixel Image */
+.pixel-image {
+  image-rendering: pixelated;
+}
+
+/* Pixel Grid Overlay */
+.pixel-grid-overlay {
+  background-image: linear-gradient(rgba(50, 50, 50, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 50, 50, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Pixel Text Shadow */
+.pixel-text-shadow {
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+}
+
+/* Pixel Link */
+.pixel-link {
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.pixel-link:hover {
+  transform: translateX(4px);
+  color: #f0f0f0;
+}
+
+/* Pixel Progress Bar */
+.pixel-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 8px 8px;
+  animation: progress-animation 1s linear infinite;
+}
+
+@keyframes progress-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 16px 0;
+  }
+}
+
+/* Pixel Animation */
+.pixel-animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Pixel Blinking Cursor */
+.pixel-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Pixel Icon Container */
+.pixel-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
