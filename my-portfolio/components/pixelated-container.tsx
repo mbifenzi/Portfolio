@@ -4,8 +4,13 @@ import { cn } from "@/lib/utils"
 interface PixelatedContainerProps {
   children: React.ReactNode
   className?: string
+  id?: string // Added id prop
 }
 
-export function PixelatedContainer({ children, className }: PixelatedContainerProps) {
-  return <section className={cn("relative", className)}>{children}</section>
+export function PixelatedContainer({ children, className, id }: PixelatedContainerProps) {
+  return (
+    <section id={id} className={cn("relative", className)}>
+      {children}
+    </section>
+  )
 }
