@@ -55,6 +55,7 @@ export const projects: Project[] = [
     image: "/sase.png",
     tags: ["Next.js", "Gamification", "LMS"],
     categories: ["frontend"],
+    url: "https://sase-quiz.um6p.ma/login"
     featured: true,
     details:
       "Starts with a candidature process modeled after the 1337 School, guiding users through challenges. Includes learning modules and quizzes.",
