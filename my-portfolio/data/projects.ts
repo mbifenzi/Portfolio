@@ -126,6 +126,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "Django", "RBAC", "Security"],
     categories: ["fullstack"],
     featured: false,
+    url: "https://labsafe.vercel.app", 
     details:
       "Built to manage lab access permissions, enforce safety compliance, and monitor researcher activity. Includes role-based access control and secure record-keeping across multiple labs and users.",
   },
@@ -140,6 +141,30 @@ export const projects: Project[] = [
     details:
       "Enables users to submit documents and assign reviewers. Reviewers can create issues, engage in threaded comment discussions, and track document history and approval progress. Designed to support collaborative workflows in academic and institutional settings.",
   },
+  {
+  id: "decorifai",
+  title: "Decorifai",
+  description: "AI-powered interior design app that transforms room photos into styled spaces.",
+  image: "/decorifai.png",
+  tags: ["React Native", "FastAPI", "Cloudinary", "Replicate API"],
+  categories: ["mobile", "ai"],
+  featured: true,
+  url: "https://decorifai.com", 
+  details:
+    "Users upload room images and select a style to receive AI-generated interior designs. Features include style selection, room type customization, and high-resolution downloads.",
+},
+{
+  id: "cartoonifai",
+  title: "Cartoonifai",
+  description: "Transform your photos into anime or cartoon art using AI.",
+  image: "/cartoonifai.png",
+  tags: ["React Native", "FastAPI", "Cloudinary", "Replicate API"],
+  categories: ["mobile", "ai"],
+  featured: true,
+  url: "https://cartoonifai.com", 
+  details:
+    "Users can cartoonify or animefy their photos in one tap. Includes Ghibli and comic styles, image upload, transformation history, and fast image generation via a secure backend.",
+},
 ]
 
 export const getProjectById = (id: string): Project | undefined => {
