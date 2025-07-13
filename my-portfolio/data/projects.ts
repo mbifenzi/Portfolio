@@ -158,7 +158,7 @@ export const projects: Project[] = [
   id: "cartoonifai",
   title: "Cartoonifai",
   description: "Transform your photos into anime or cartoon art using AI.",
-  image: "/cartoonifai.png",
+  image: "/transform.PNG",
   tags: ["React Native", "FastAPI", "Cloudinary", "Replicate API"],
   categories: ["mobile", "ai"],
   featured: true,
