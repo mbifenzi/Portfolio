@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { ProjectCard } from "@/components/project-card"
 import { ProjectFilter } from "@/components/project-filter"
 import { SiteHeader } from "@/components/site-header"
-import { getAllProjects, type ProjectCategory } from "@/data/projects"
+import { getAllProjects, projectGroups, type ProjectCategory } from "@/data/projects"
 
 export default function ProjectsPage() {
   const allProjects = getAllProjects()
@@ -33,26 +33,36 @@ export default function ProjectsPage() {
           <SectionHeading className="text-3xl md:text-4xl mb-4 text-center">All projects</SectionHeading>
 
           <p className="text-center text-gray-400 max-w-2xl mx-auto mb-12">
-            Apps I ship on my own, platforms I built at UM6P, and projects from 1337. Use the filters to narrow them
+            Platforms I built at UM6P, apps I ship on my own, and projects from 1337. Use the filters to narrow them
             down.
           </p>
 
           <ProjectFilter className="mb-12" onFilterChange={handleFilterChange} activeFilter={activeFilter} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                tags={project.tags}
-                github={project.github}
-                url={project.url}
-                details={project.details}
-              />
-            ))}
-          </div>
+          {projectGroups.map((group) => {
+            const groupProjects = filteredProjects.filter((project) => project.group === group.id)
+            if (groupProjects.length === 0) return null
+            return (
+              <div key={group.id} className="mb-14">
+                <h2 className="text-xl font-semibold tracking-tight mb-6">{group.title}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {groupProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      title={project.title}
+                      description={project.description}
+                      image={project.image}
+                      tags={project.tags}
+                      github={project.github}
+                      url={project.url}
+                      details={project.details}
+                      caseStudySlug={project.caseStudy?.slug}
+                    />
+                  ))}
+                </div>
+              </div>
+            )
+          })}
 
           <div className="text-center">
             <Link href="/">

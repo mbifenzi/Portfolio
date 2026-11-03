@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { Github, ExternalLink, Maximize2, X } from "lucide-react"
+import { ArrowRight, Github, ExternalLink, Maximize2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface ProjectCardProps {
@@ -16,9 +16,20 @@ interface ProjectCardProps {
   github?: string
   url?: string
   details?: string
+  caseStudySlug?: string
 }
 
-export function ProjectCard({ title, description, image, tags, className, github, url, details }: ProjectCardProps) {
+export function ProjectCard({
+  title,
+  description,
+  image,
+  tags,
+  className,
+  github,
+  url,
+  details,
+  caseStudySlug,
+}: ProjectCardProps) {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const placeholderImage = image || "/project-management-team.png"
 
@@ -38,11 +49,11 @@ export function ProjectCard({ title, description, image, tags, className, github
     <>
       <div
         className={cn(
-          "card overflow-hidden transition-colors hover:border-gray-600",
+          "card flex flex-col overflow-hidden transition-colors hover:border-gray-600",
           className,
         )}
       >
-        <div className="relative h-48 overflow-hidden group">
+        <div className="relative h-48 shrink-0 overflow-hidden bg-gray-900 group">
           <Image src={placeholderImage || "/placeholder.svg"} alt={title} fill className="object-cover" />
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
             <Button
@@ -56,7 +67,7 @@ export function ProjectCard({ title, description, image, tags, className, github
           </div>
         </div>
 
-        <div className="p-4">
+        <div className="p-4 flex flex-1 flex-col">
           <h3 className="text-xl font-semibold tracking-tight mb-2">{title}</h3>
           <p className="text-sm mb-4 text-gray-300">{description}</p>
 
@@ -68,7 +79,17 @@ export function ProjectCard({ title, description, image, tags, className, github
             ))}
           </div>
 
-          <div className="flex justify-end items-center gap-3">
+          <div className="mt-auto flex items-center gap-3">
+            {caseStudySlug && (
+              <Link
+                href={`/work/${caseStudySlug}`}
+                className="group/link text-sm font-medium text-green-400 flex items-center gap-2"
+              >
+                Read case study
+                <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+              </Link>
+            )}
+            <span className="flex-1" />
             {github && (
               <Link
                 href={github}

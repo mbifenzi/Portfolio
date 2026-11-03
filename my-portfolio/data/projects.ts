@@ -1,5 +1,13 @@
 export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile" | "ai"
 
+export type ProjectGroup = "professional" | "independent" | "school"
+
+export const projectGroups: { id: ProjectGroup; title: string }[] = [
+  { id: "professional", title: "Professional work at UM6P" },
+  { id: "independent", title: "Independent projects" },
+  { id: "school", title: "1337 projects" },
+]
+
 export interface CaseStudy {
   slug: string
   problem: string
@@ -19,6 +27,7 @@ export interface Project {
   image: string
   tags: string[]
   categories: ProjectCategory[]
+  group: ProjectGroup
   featured: boolean
   url?: string
   github?: string
@@ -34,6 +43,7 @@ export const projects: Project[] = [
     image: "/astraconnect-cover.jpg",
     tags: ["Django", "DRF", "PostgreSQL", "Next.js", "Microsoft SSO"],
     categories: ["fullstack"],
+    group: "professional",
     featured: true,
     details:
       "Built alone from functional specifications at Vanguard Center, UM6P, as one of the department's platforms on holon.ma. DRF APIs, PostgreSQL data models, Next.js interfaces and permissions for four user roles. One-to-one and group session scheduling with recurring availability, proposals, rescheduling and conflict detection. QR and manual attendance with expiring check-in tokens, duplicate prevention and audit trails. Programs, cohorts, courses, enrollments and mentor workloads. Microsoft SSO through the shared authentication service used by all the department's holon.ma platforms.",
@@ -45,6 +55,7 @@ export const projects: Project[] = [
     image: "/odoo-mentoring-cover.jpg",
     tags: ["Odoo 18", "Python", "PostgreSQL", "XML views", "Tests"],
     categories: ["backend", "fullstack"],
+    group: "independent",
     featured: true,
     github: "https://github.com/mbifenzi/odoo-mentoring",
     details:
@@ -57,6 +68,7 @@ export const projects: Project[] = [
     image: "/ryddar-cover.jpg",
     tags: ["React Native", "Django", "PostgreSQL", "Mapbox", "RevenueCat"],
     categories: ["mobile", "backend"],
+    group: "independent",
     featured: true,
     url: "https://apps.apple.com/app/id6761373440",
     details:
@@ -69,6 +81,7 @@ export const projects: Project[] = [
     image: "/decorifai-cover.jpg",
     tags: ["React Native", "Django", "Replicate", "Cloudinary", "RevenueCat"],
     categories: ["mobile", "ai", "backend"],
+    group: "independent",
     featured: true,
     url: "https://apps.apple.com/app/id6747948205",
     details:
@@ -107,6 +120,7 @@ export const projects: Project[] = [
     image: "/cartoonifai-cover.jpg",
     tags: ["React Native", "Django", "Replicate", "RevenueCat", "i18n"],
     categories: ["mobile", "ai"],
+    group: "independent",
     featured: true,
     url: "https://apps.apple.com/app/id6746586563",
     details:
@@ -119,6 +133,7 @@ export const projects: Project[] = [
     image: "/mood2drink-cover.jpg",
     tags: ["React Native", "Expo", "Django", "RevenueCat", "i18n"],
     categories: ["mobile", "frontend"],
+    group: "independent",
     featured: true,
     url: "https://apps.apple.com/app/id6743176462",
     details:
@@ -131,6 +146,7 @@ export const projects: Project[] = [
     image: "/shared-backend-cover.jpg",
     tags: ["Python", "Django", "DRF", "PostgreSQL", "Docker"],
     categories: ["backend"],
+    group: "independent",
     featured: true,
     details:
       "Centralized authentication (email, Apple and Google sign-in, JWT) and shared infrastructure, with each product's domain logic in its own Django apps. Handles purchases and credits, AI generation jobs and media storage, and is deployed with Docker. The code is private because it runs production apps.",
@@ -167,6 +183,7 @@ export const projects: Project[] = [
     image: "/sase-cover.jpg",
     tags: ["Next.js", "Django", "PostgreSQL"],
     categories: ["fullstack"],
+    group: "professional",
     url: "https://sase-application.um6p.ma/",
     featured: false,
     details:
@@ -198,9 +215,10 @@ export const projects: Project[] = [
     id: "intranet-platform",
     title: "University Intranet System",
     description: "Intranet for university administrative processes such as leave requests and mission orders.",
-    image: "/main-intra.png",
+    image: "/main-intra.jpg",
     tags: ["Next.js", "Django", "PostgreSQL"],
     categories: ["fullstack"],
+    group: "professional",
     featured: false,
     details:
       "Handles administrative processes like leave requests and mission orders, with Excel file parsing and financial calculations. Built the frontend and the authentication system.",
@@ -209,9 +227,10 @@ export const projects: Project[] = [
     id: "mechatronics-intranet",
     title: "Mechatronics School Intranet",
     description: "A platform for mechatronics students with a browser-based code editor and terminal.",
-    image: "/mechatronics.png",
+    image: "/mechatronics.jpg",
     tags: ["React", "Next.js", "Web Terminal"],
     categories: ["frontend"],
+    group: "professional",
     featured: false,
     details:
       "Includes a browser-based VS Code editor, a web terminal, and a tool to visualize and structure academic projects.",
@@ -220,9 +239,10 @@ export const projects: Project[] = [
     id: "pyccel-playground",
     title: "Pyccel Playground",
     description: "Browser-based Python-to-C++/Fortran transpiler with execution.",
-    image: "/pyccel.png",
+    image: "/pyccel.jpg",
     tags: ["Python", "Next.js", "Terminal"],
     categories: ["frontend"],
+    group: "professional",
     featured: false,
     details: "Transpiles Python code to C++ and Fortran and runs it in an online terminal.",
     url: "https://pyccel-playground.vercel.app",
@@ -232,9 +252,10 @@ export const projects: Project[] = [
     id: "labsafe",
     title: "LabSafe",
     description: "Access and safety compliance management for research labs.",
-    image: "/labsafe.png",
+    image: "/labsafe.jpg",
     tags: ["Next.js", "Django", "RBAC"],
     categories: ["fullstack"],
+    group: "professional",
     featured: false,
     url: "https://labsafe.vercel.app",
     details:
@@ -244,9 +265,10 @@ export const projects: Project[] = [
     id: "document-review-platform",
     title: "Document Review & Approval System",
     description: "Document submission with reviewer assignments, issue tracking and threaded discussions.",
-    image: "/document.png",
+    image: "/document.jpg",
     tags: ["Next.js", "Django", "Workflow", "RBAC"],
     categories: ["fullstack"],
+    group: "professional",
     featured: false,
     details:
       "Users submit documents and assign reviewers. Reviewers open issues, discuss them in threaded comments and track each document's history and approval progress.",
@@ -255,9 +277,10 @@ export const projects: Project[] = [
     id: "ft-transcendence",
     title: "ft_transcendence",
     description: "Real-time multiplayer Pong with chat, authentication and user profiles.",
-    image: "/tran.png",
+    image: "/tran.jpg",
     tags: ["Nest.js", "PostgreSQL", "WebSockets", "Next.js"],
     categories: ["fullstack"],
+    group: "school",
     featured: false,
     details:
       "1337 (42 Network) final project: multiplayer games, live chat, friend requests and achievements.",
@@ -267,9 +290,10 @@ export const projects: Project[] = [
     id: "car-sharing-platform",
     title: "Ok Voiture",
     description: "Car-sharing platform that connects vehicle owners with renters.",
-    image: "/okvoiture.png",
+    image: "/okvoiture.jpg",
     tags: ["Next.js", "Nest.js", "PostgreSQL"],
     categories: ["fullstack"],
+    group: "independent",
     featured: false,
     details: "Users list and rent vehicles and manage bookings.",
     github: "https://github.com/mbifenzi/OkVoiture",
@@ -278,9 +302,10 @@ export const projects: Project[] = [
     id: "inception",
     title: "Inception",
     description: "Multi-service infrastructure with Docker Compose.",
-    image: "/docker-infrastructure.png",
+    image: "/docker-infrastructure.jpg",
     tags: ["Docker", "Nginx", "MariaDB", "WordPress"],
     categories: ["backend"],
+    group: "school",
     featured: false,
     details: "1337 DevOps project: WordPress, Nginx and MariaDB, each in its own container, orchestrated with Docker Compose.",
     github: "https://github.com/mbifenzi/inception",
@@ -292,6 +317,7 @@ export const projects: Project[] = [
     image: "/webserv.svg",
     tags: ["C++", "HTTP", "Sockets"],
     categories: ["backend"],
+    group: "school",
     featured: false,
     details: "1337 project: a poll()-based server that handles many connections at once, parses HTTP requests and builds responses.",
     github: "https://github.com/mbifenzi/webserv",
@@ -300,9 +326,10 @@ export const projects: Project[] = [
     id: "cub3d",
     title: "Cub3D",
     description: "A 3D raycasting game engine inspired by Wolfenstein 3D.",
-    image: "/3d-raycasting-game.png",
+    image: "/3d-raycasting-game.jpg",
     tags: ["C", "Graphics", "Raycasting"],
     categories: ["frontend"],
+    group: "school",
     featured: false,
     details: "Built from scratch in C using raycasting: the player moves through a 3D world rendered from a 2D map.",
     github: "https://github.com/mbifenzi/cub3d",

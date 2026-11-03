@@ -145,6 +145,7 @@ export default function Home() {
                 github={project.github}
                 url={project.url}
                 details={project.details}
+                caseStudySlug={project.caseStudy?.slug}
               />
             ))}
           </div>
