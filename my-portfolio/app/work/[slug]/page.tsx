@@ -20,7 +20,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {
     title: `${project.title} - Case study - Mohamed Bifenzi`,
     description: project.description,
-    openGraph: { images: [{ url: project.image }] },
   }
 }
 

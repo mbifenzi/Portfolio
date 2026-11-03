@@ -18,14 +18,12 @@ export const metadata: Metadata = {
     description,
     url: "/",
     siteName: "Mohamed Bifenzi",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Mohamed Bifenzi - Software Engineer" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mohamed Bifenzi - Software Engineer",
     description,
-    images: ["/og.png"],
   },
 }
 
@@ -36,9 +34,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body className="min-h-screen bg-black antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}

@@ -8,16 +8,11 @@ import { SiteHeader } from "@/components/site-header"
 import { SwitchableAvatar } from "@/components/switchable-avatar"
 import { SkillCard } from "@/components/skill-card"
 import { getCaseStudies, getFeaturedProjects } from "@/data/projects"
+import { stats } from "@/data/profile"
 import { Mail, Github, Linkedin, ArrowRight, MapPin, Download } from "lucide-react"
 
 // Pre-calculate the current year to avoid hydration mismatch
 const currentYear = new Date().getFullYear()
-
-const stats = [
-  { value: "4", label: "apps on the App Store" },
-  { value: "20,000", label: "candidates on the exam platform" },
-  { value: "~1,000", label: "users on AstraConnect" },
-]
 
 function XIcon({ className }: { className?: string }) {
   return (
