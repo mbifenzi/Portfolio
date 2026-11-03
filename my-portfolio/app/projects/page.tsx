@@ -7,6 +7,7 @@ import { PixelatedContainer } from "@/components/pixelated-container"
 import { PixelatedHeading } from "@/components/pixelated-heading"
 import { ProjectCard } from "@/components/project-card"
 import { ProjectFilter } from "@/components/project-filter"
+import { SiteHeader } from "@/components/site-header"
 import { getAllProjects, type ProjectCategory } from "@/data/projects"
 
 export default function ProjectsPage() {
@@ -24,30 +25,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="py-6 px-4 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="font-pixel text-xl text-green-400 pixel-text-shadow">
-            MOHAMED BIFENZI
-          </Link>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/" className="hover:text-green-400 transition-colors">
-              HOME
-            </Link>
-            <Link href="/projects" className="text-green-400">
-              PROJECTS
-            </Link>
-            <Link href="/#contact" className="hover:text-green-400 transition-colors">
-              CONTACT
-            </Link>
-          </nav>
-          <Link href="/" className="md:hidden">
-            <Button variant="outline" size="sm" className="pixel-border-sm">
-              BACK
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Projects Section */}
       <PixelatedContainer className="py-16 px-4">
@@ -90,7 +68,7 @@ export default function ProjectsPage() {
 
       {/* Footer */}
       <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
-        <p>© {new Date().getFullYear()} MOHAMED BIFENZI • ALL RIGHTS RESERVED</p>
+        <p>© {new Date().getFullYear()} MOHAMED BIFENZI</p>
       </footer>
     </div>
   )

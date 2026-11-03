@@ -1,5 +1,17 @@
 export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile" | "ai"
 
+export interface CaseStudy {
+  slug: string
+  problem: string
+  built: string[]
+  hardPart: { title: string; body: string }
+  results: string[]
+  chips: string[]
+  links: { label: string; href: string }[]
+  note?: string
+  article?: { title: string; href: string }
+}
+
 export interface Project {
   id: string
   title: string
@@ -11,6 +23,7 @@ export interface Project {
   url?: string
   github?: string
   details?: string
+  caseStudy?: CaseStudy
 }
 
 export const projects: Project[] = [
@@ -37,6 +50,32 @@ export const projects: Project[] = [
     url: "https://apps.apple.com/app/id6747948205",
     details:
       "Snap a room and DecorifAI redesigns, furnishes or clears it while keeping its real walls, windows and floor, then fine-tune it in plain words. 20 styles, including Moroccan and Mediterranean ones, and 5-second videos of the room transforming. Asynchronous generation with Replicate, failure handling with automatic credit refunds, Cloudinary storage, and RevenueCat subscriptions and credit packs. The Next.js website is in English and French.\n\nWebsite: decorifai.com",
+    caseStudy: {
+      slug: "decorifai",
+      problem:
+        "Homeowners, renters and real-estate agents want to see a room in a new style before spending money, but AI image models are slow, cost money per call and sometimes fail. The app had to feel instant and never charge for a failed result.",
+      built: [
+        "An Expo / React Native iOS app: pick a room photo, a mode (redesign, furnish, clear out) and one of 20 styles, including Moroccan and Mediterranean ones.",
+        "Plain-language edits on any result (\"make the walls white\") and 5-second videos of the room transforming.",
+        "A Django product app that creates Replicate predictions, receives the result by webhook, and stores images and videos on Cloudinary.",
+        "Credits, subscriptions and credit packs through RevenueCat, plus rewarded ads.",
+        "A Next.js marketing site in English and French.",
+      ],
+      hardPart: {
+        title: "Asynchronous generation with automatic refunds",
+        body: "A generation can take from a few seconds to a minute, so the API doesn't wait for it. It charges the credits, starts the prediction with a webhook URL and returns right away. The app polls the generation's status, and each poll also asks Replicate directly in case a webhook is late. When Replicate calls back, the backend verifies the webhook signature before trusting it. If the prediction failed or was cancelled, the same code path gives the credits back as a ledger entry, so users never pay for nothing.",
+      },
+      results: [
+        "Live on the App Store",
+        "Redesign, furnish and clear-out modes, 20 styles, room videos",
+        "No charge for failed generations",
+      ],
+      chips: ["Live on the App Store", "Async AI jobs", "Auto refunds"],
+      links: [
+        { label: "App Store", href: "https://apps.apple.com/app/id6747948205" },
+        { label: "Website", href: "https://www.decorifai.com" },
+      ],
+    }
   },
   {
     id: "cartoonifai",
@@ -66,18 +105,43 @@ export const projects: Project[] = [
     id: "shared-backend",
     title: "Shared Django Backend",
     description: "One Django backend that runs the APIs for all four apps.",
-    image: "/shared-backend.svg",
+    image: "/shared-backend-cover.jpg",
     tags: ["Python", "Django", "DRF", "PostgreSQL", "Docker"],
     categories: ["backend"],
     featured: true,
     details:
       "Centralized authentication (email, Apple and Google sign-in, JWT) and shared infrastructure, with each product's domain logic in its own Django apps. Handles purchases and credits, AI generation jobs and media storage, and is deployed with Docker. The code is private because it runs production apps.",
+    caseStudy: {
+      slug: "shared-django-backend",
+      problem:
+        "Four apps, one developer. Running a separate backend per app would mean four copies of auth, payments, deploys and on-call. I needed one backend that every app could use without their data and rules leaking into each other.",
+      built: [
+        "One Django REST Framework project. Each product is its own Django app under products/ (ryddar, decorifai, cartoonifai, mood2drink) with its own models, migrations, admin, URLs and tests.",
+        "One shared User model with JWT authentication (SimpleJWT, rotating refresh tokens, a blacklist) and Sign in with Apple and Google. Apps that work without an account start with an anonymous device installation, which is linked to the user when they sign in.",
+        "A credits ledger: every purchase, refund, reward and generation is an entry with a unique reference.",
+        "RevenueCat webhooks for subscriptions and consumable packs, including refunds that take credits back.",
+        "Docker images deployed to a Hetzner server behind Caddy, with GitHub Actions running the tests and deploying to production.",
+      ],
+      hardPart: {
+        title: "Credits that never double-count",
+        body: "Payment providers retry webhooks, users double-tap and networks drop responses. Each ledger entry carries a unique reference (for example the store transaction ID), so a retried event can't add credits twice. Balance changes run inside transaction.atomic with select_for_update on the account row, so two requests can't spend the same credit at the same time.",
+      },
+      results: [
+        "Runs the APIs for 4 App Store apps from a single deployment",
+        "Adding a product means adding a Django app; auth, payments and deploys are already there",
+        "Test suites per product, run in CI before every deploy",
+      ],
+      chips: ["4 apps · 1 backend", "Idempotent credits", "Docker + CI/CD"],
+      links: [],
+      note: "The code is private because it runs production apps. Happy to walk through it in an interview.",
+      article: { title: "One Django backend for four App Store apps", href: "/writing/one-backend-four-apps" },
+    }
   },
   {
     id: "astraconnect",
     title: "AstraConnect",
     description: "UM6P's academic mentoring platform, part of the department's holon.ma platforms. About 1,000 students and mentors use it.",
-    image: "/astraconnect.svg",
+    image: "/astraconnect-cover.jpg",
     tags: ["Django", "DRF", "PostgreSQL", "Next.js", "Microsoft SSO"],
     categories: ["fullstack"],
     featured: true,
@@ -88,13 +152,35 @@ export const projects: Project[] = [
     id: "sase-exam",
     title: "SASE Admissions Exam Platform",
     description: "UM6P's admissions exam platform. It handled 20,000 candidates during the 2026 testing week.",
-    image: "/sase.png",
+    image: "/sase-cover.jpg",
     tags: ["Next.js", "Django", "PostgreSQL"],
     categories: ["fullstack"],
     url: "https://sase-quiz.um6p.ma/login",
     featured: false,
     details:
       "Learner, mentor and admin assessment interfaces with timed quizzes, attempts, autosave and reviews. About 1,000 regular users, and 20,000 candidates during the 2026 admissions week, booking slots in batches to keep server load under control. Fixed production issues affecting submissions, question loading and session expiry.",
+    caseStudy: {
+      slug: "sase-exam-platform",
+      problem:
+        "UM6P's SASE admissions test runs online. During the admissions week thousands of candidates take timed exams, and a crash, a lost answer or an expired session can cost someone their place.",
+      built: [
+        "Learner, mentor and admin assessment interfaces.",
+        "Timed quizzes with attempts, autosave and reviews.",
+        "Production support during the admissions week: fixes for submissions, question loading and session expiry.",
+      ],
+      hardPart: {
+        title: "Keeping it stable under admissions-week load",
+        body: "The platform serves about 1,000 regular users, but the 2026 admissions week brought 20,000 candidates. Candidates booked slots in batches, which kept the number of simultaneous exams under control. During the week I fixed production issues affecting submissions, question loading and session expiry, the three places where a candidate could lose work.",
+      },
+      results: [
+        "20,000 candidates during the 2026 admissions testing week",
+        "About 1,000 regular users",
+        "Autosave so candidates don't lose answers",
+      ],
+      chips: ["20,000 candidates", "Timed exams", "Production support"],
+      links: [{ label: "Platform", href: "https://sase-quiz.um6p.ma/login" }],
+      note: "Built at Vanguard Center, UM6P. The code belongs to the university and isn't public.",
+    }
   },
   {
     id: "intranet-platform",
@@ -213,6 +299,18 @@ export const projects: Project[] = [
 
 export const getProjectById = (id: string): Project | undefined => {
   return projects.find((project) => project.id === id)
+}
+
+const caseStudyOrder = ["shared-django-backend", "decorifai", "sase-exam-platform"]
+
+export const getCaseStudies = (): Project[] => {
+  return projects
+    .filter((project) => project.caseStudy)
+    .sort((a, b) => caseStudyOrder.indexOf(a.caseStudy!.slug) - caseStudyOrder.indexOf(b.caseStudy!.slug))
+}
+
+export const getProjectBySlug = (slug: string): Project | undefined => {
+  return projects.find((project) => project.caseStudy?.slug === slug)
 }
 
 export const getFeaturedProjects = (): Project[] => {

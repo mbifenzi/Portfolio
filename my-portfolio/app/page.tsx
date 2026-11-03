@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button"
 import { PixelatedContainer } from "@/components/pixelated-container"
 import { PixelatedHeading } from "@/components/pixelated-heading"
 import { ProjectCard } from "@/components/project-card"
-import { PixelatedSection } from "@/components/pixelated-section"
-import { ProgressBar } from "@/components/progress-bar"
+import { CaseStudyCard } from "@/components/case-study-card"
+import { SiteHeader } from "@/components/site-header"
 import { PixelIcon } from "@/components/pixel-icon"
 import { SwitchableAvatar } from "@/components/switchable-avatar"
 import { SkillCard } from "@/components/skill-card"
-import { getFeaturedProjects } from "@/data/projects"
-import { Code, Database, Smartphone, Mail, Github, Linkedin, Twitter, ArrowRight, MapPin } from "lucide-react"
+import { getCaseStudies, getFeaturedProjects } from "@/data/projects"
+import { Mail, Github, Linkedin, Twitter, ArrowRight, MapPin, Download } from "lucide-react"
 
 // Pre-calculate the current year to avoid hydration mismatch
 const currentYear = new Date().getFullYear()
@@ -61,50 +61,51 @@ const education = [
 ]
 
 export default function Home() {
-  const featuredProjects = getFeaturedProjects()
+  const caseStudies = getCaseStudies()
+  const otherFeatured = getFeaturedProjects().filter((project) => !project.caseStudy)
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <PixelatedSection className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-        <div className="absolute top-4 right-4 hidden md:flex items-center gap-2">
-          <span className="text-xs font-pixel">EXPERIENCE: 3+ YEARS</span>
-          <ProgressBar value={90} maxValue={100} />
-        </div>
+      <SiteHeader />
 
-        {/* Mobile experience bar - positioned below avatar */}
-        <div className="md:hidden w-full px-4 mb-6 mt-4">
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-xs font-pixel">EXPERIENCE: 3+ YEARS</span>
-            <ProgressBar value={90} maxValue={100} />
-          </div>
-        </div>
-
-        <div className="pixel-animate-float z-10">
+      {/* Hero */}
+      <section className="relative overflow-hidden px-4 pt-12 pb-14 md:pt-16">
+        <div className="absolute inset-0 pointer-events-none pixel-grid-overlay"></div>
+        <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-10">
           <SwitchableAvatar
-            className="w-32 h-32 md:w-48 md:h-48 mb-8 pixel-border"
+            className="w-28 h-28 md:w-36 md:h-36 pixel-border shrink-0"
             pixelArtSrc="/pixel-art-developer-avatar.png"
             realPhotoSrc="/real-photo-avatar.png"
             alt="Mohamed Bifenzi"
-            initialIsPixelArt={true}
           />
+          <div className="text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl text-green-400 pixel-text-shadow mb-3">MOHAMED BIFENZI</h1>
+            <p className="font-pixel text-lg md:text-xl text-yellow-400 mb-4">SOFTWARE ENGINEER · PYTHON / DJANGO</p>
+            <p className="max-w-2xl text-gray-200 mb-6">
+              I build business platforms end to end with Python, Django and React: data models, APIs, frontend and
+              production support. I also ship and maintain four apps of my own on the App Store.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              <a href="#work">
+                <Button variant="outline" className="pixel-border pixel-button">
+                  VIEW WORK
+                </Button>
+              </a>
+              <a href="/Mohamed-bifenzi.pdf" download>
+                <Button variant="outline" className="pixel-border pixel-button">
+                  <Download className="mr-2 h-4 w-4" /> RESUME
+                </Button>
+              </a>
+              <a href="https://github.com/mbifenzi" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="pixel-border pixel-button">
+                  <Github className="mr-2 h-4 w-4" /> GITHUB
+                </Button>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <PixelatedHeading className="text-4xl md:text-6xl mb-4 text-center text-green-400 pixel-text-shadow">
-          MOHAMED BIFENZI
-        </PixelatedHeading>
-
-        <div className="pixel-text-shadow text-xl md:text-2xl mb-8 text-center">
-          <span className="text-yellow-400 font-pixel">SOFTWARE ENGINEER · PYTHON / DJANGO</span>
-          <span className="pixel-blink"> _</span>
-        </div>
-
-        <p className="max-w-2xl text-center mb-8 px-4">
-          I build business platforms end to end with Python, Django and React: data models, APIs, frontend and
-          production support. I also ship and maintain four apps of my own on the App Store.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 px-4 w-full max-w-3xl">
+        <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
           {stats.map((stat) => (
             <div key={stat.label} className="pixel-border bg-gray-900 p-4 text-center">
               <div className="font-pixel text-2xl text-green-400">{stat.value}</div>
@@ -112,96 +113,55 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section>
 
-        <div className="flex gap-4 mb-12">
-          <a href="#projects">
-            <Button variant="outline" className="pixel-border pixel-button">
-              VIEW PROJECTS
-            </Button>
-          </a>
-          <a href="#contact">
-            <Button variant="outline" className="pixel-border pixel-button">
-              CONTACT ME
-            </Button>
-          </a>
-        </div>
+      {/* Featured work */}
+      <PixelatedContainer id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+        <div className="max-w-5xl mx-auto">
+          <PixelatedHeading className="text-3xl md:text-4xl mb-3 text-center text-purple-400">FEATURED WORK</PixelatedHeading>
+          <p className="text-center text-gray-400 mb-10">Three projects in depth: the problem, what I built and the hard part.</p>
 
-        <div className="absolute bottom-8 hidden md:block animate-bounce">
-          <span className="pixel-text-shadow font-pixel">SCROLL DOWN TO CONTINUE</span>
-        </div>
-
-        <div className="absolute inset-0 pointer-events-none pixel-grid-overlay"></div>
-      </PixelatedSection>
-
-      {/* About Section */}
-      <PixelatedContainer className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-blue-400">EXPERTISE</PixelatedHeading>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="pixel-border p-6 bg-gray-900">
-              <h3 className="text-xl mb-4 text-yellow-400">PROFESSIONAL PROFILE</h3>
-              <p className="mb-4">
-                Software engineer writing code since 2019, with 3+ years of professional Python and Django experience.
-                At UM6P I build multi-role platforms that thousands of students and candidates use.
-              </p>
-              <p>
-                Before code I studied economics and worked in sales, so I care about how business software handles
-                workflows, stock and money.
-              </p>
-            </div>
-
-            <div className="pixel-border p-6 bg-gray-900">
-              <h3 className="text-xl mb-4 text-yellow-400">CORE COMPETENCIES</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <PixelIcon icon={Database} className="text-green-400" />
-                  <span>Django & DRF APIs, PostgreSQL data models</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <PixelIcon icon={Code} className="text-blue-400" />
-                  <span>React & Next.js interfaces</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <PixelIcon icon={Smartphone} className="text-purple-400" />
-                  <span>React Native apps, from build to App Store release</span>
-                </li>
-              </ul>
-            </div>
+          <div className="space-y-8 mb-16">
+            {caseStudies.map((project, index) => (
+              <CaseStudyCard key={project.id} project={project} priority={index === 0} />
+            ))}
           </div>
 
-          <div className="pixel-border p-6 bg-gray-900 mb-8">
-            <h3 className="text-xl mb-6 text-yellow-400">TECHNICAL SKILLS</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <SkillCard
-                title="Backend"
-                skills={["Python", "Django", "Django REST Framework", "Django Channels", "PostgreSQL", "Redis"]}
-                iconColor="text-green-400"
+          <h3 className="text-2xl text-center text-blue-400 mb-8">MORE PROJECTS</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {otherFeatured.map((project) => (
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                tags={project.tags}
+                github={project.github}
+                url={project.url}
+                details={project.details}
               />
-              <SkillCard
-                title="Frontend & Mobile"
-                skills={["TypeScript", "React", "Next.js", "React Native", "Expo", "Tailwind CSS"]}
-                iconColor="text-blue-400"
-              />
-              <SkillCard
-                title="Tooling"
-                skills={["Git", "Docker", "Linux", "pytest", "CI/CD", "C / C++"]}
-                iconColor="text-purple-400"
-              />
-              <SkillCard
-                title="Integrations"
-                skills={["Microsoft SSO", "Mapbox", "RevenueCat", "Replicate", "Cloudinary"]}
-                iconColor="text-yellow-400"
-              />
-            </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/projects">
+              <Button variant="outline" className="pixel-border pixel-button group">
+                ALL PROJECTS
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
         </div>
       </PixelatedContainer>
 
-      {/* Experience Section */}
-      <PixelatedContainer id="experience" className="py-16 px-4 scroll-mt-20">
+      {/* Experience */}
+      <PixelatedContainer id="experience" className="py-16 px-4 scroll-mt-14">
         <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-green-400">EXPERIENCE</PixelatedHeading>
+          <PixelatedHeading className="text-3xl md:text-4xl mb-3 text-center text-green-400">EXPERIENCE</PixelatedHeading>
+          <p className="text-center text-gray-400 max-w-2xl mx-auto mb-10">
+            Writing code since 2019, with 3+ years of professional Python and Django. Before that I studied economics and
+            worked in sales, so I care about how business software handles workflows, stock and money.
+          </p>
 
           <div className="space-y-6 mb-12">
             {experience.map((job) => (
@@ -239,52 +199,44 @@ export default function Home() {
         </div>
       </PixelatedContainer>
 
-      {/* Projects Section */}
-      <PixelatedContainer id="projects" className="py-16 px-4 bg-gray-950 scroll-mt-20">
-        <div className="max-w-6xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-purple-400">
-            FEATURED PROJECTS
-          </PixelatedHeading>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {featuredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                tags={project.tags}
-                github={project.github}
-                url={project.url}
-                details={project.details}
-              />
-            ))}
+      {/* Skills */}
+      <PixelatedContainer id="skills" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+        <div className="max-w-4xl mx-auto">
+          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-blue-400">SKILLS</PixelatedHeading>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SkillCard
+              title="Backend"
+              skills={["Python", "Django", "Django REST Framework", "Django Channels", "PostgreSQL", "Redis"]}
+              iconColor="text-green-400"
+            />
+            <SkillCard
+              title="Frontend & Mobile"
+              skills={["TypeScript", "React", "Next.js", "React Native", "Expo", "Tailwind CSS"]}
+              iconColor="text-blue-400"
+            />
+            <SkillCard
+              title="Tooling"
+              skills={["Git", "Docker", "Linux", "pytest", "CI/CD", "C / C++"]}
+              iconColor="text-purple-400"
+            />
+            <SkillCard
+              title="Integrations"
+              skills={["Microsoft SSO", "Mapbox", "RevenueCat", "Replicate", "Cloudinary"]}
+              iconColor="text-yellow-400"
+            />
           </div>
-           <div className="text-center">
-            <Link href="/projects">
-              <Button variant="outline" className="pixel-border pixel-button group">
-                VIEW ALL PROJECTS
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </div>
+          <p className="text-center text-gray-400 mt-6">Languages: Arabic (native), French and English (full professional).</p>
         </div>
       </PixelatedContainer>
 
-      {/* Contact Section */}
-      <PixelatedContainer id="contact" className="py-16 px-4 scroll-mt-20">
+      {/* Contact */}
+      <PixelatedContainer id="contact" className="py-16 px-4 scroll-mt-14">
         <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-red-400">CONNECT</PixelatedHeading>
+          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-red-400">CONTACT</PixelatedHeading>
 
           <div className="pixel-border p-6 bg-gray-900 mb-8">
             <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
               <div className="text-center">
-                <SwitchableAvatar
-                  className="w-24 h-24 mb-4 mx-auto pixel-border"
-                  pixelArtSrc="/pixel-art-developer-avatar.png"
-                  realPhotoSrc="/real-photo-avatar.png"
-                  alt="Mohamed Bifenzi"
-                />
                 <h3 className="text-xl mb-2 text-yellow-400">MOHAMED BIFENZI</h3>
                 <p className="mb-1">Open to new opportunities</p>
                 <p className="mb-4 flex items-center justify-center gap-1 text-gray-400">
@@ -297,20 +249,14 @@ export default function Home() {
                   <PixelIcon icon={Mail} className="text-red-400" />
                   <span>mohamedbifenzi1@gmail.com</span>
                 </Link>
-
                 <Link href="https://github.com/mbifenzi" className="flex items-center gap-2 pixel-link">
                   <PixelIcon icon={Github} className="text-purple-400" />
                   <span>github.com/mbifenzi</span>
                 </Link>
-
-                <Link
-                  href="https://www.linkedin.com/in/mohamed-bifenzi/"
-                  className="flex items-center gap-2 pixel-link"
-                >
+                <Link href="https://www.linkedin.com/in/mohamed-bifenzi/" className="flex items-center gap-2 pixel-link">
                   <PixelIcon icon={Linkedin} className="text-blue-400" />
                   <span>linkedin.com/in/mohamed-bifenzi</span>
                 </Link>
-
                 <Link href="https://x.com/MBifenzi" className="flex items-center gap-2 pixel-link">
                   <PixelIcon icon={Twitter} className="text-cyan-400" />
                   <span>@MBifenzi</span>
@@ -329,10 +275,8 @@ export default function Home() {
         </div>
       </PixelatedContainer>
 
-      {/* Footer */}
-      <footer className="py-6 px-4 text-center text-sm">
-        <p>© {currentYear} MOHAMED BIFENZI • ALL RIGHTS RESERVED</p>
-        
+      <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
+        <p>© {currentYear} MOHAMED BIFENZI</p>
       </footer>
     </div>
   )
