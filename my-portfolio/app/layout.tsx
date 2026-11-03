@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 const description =
-  "Software engineer in Rabat. Python/Django, React and React Native. Four apps live on the App Store and university platforms used by thousands at UM6P."
+  "Software engineer in Rabat. Python/Django, React and React Native. Four apps live on the App Store and platforms used by thousands at UM6P."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mbifenzi.vercel.app"),

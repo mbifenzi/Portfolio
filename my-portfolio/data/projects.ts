@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     id: "astraconnect",
     title: "AstraConnect",
-    description: "UM6P's academic mentoring platform, part of the department's holon.ma platforms. About 1,000 students and mentors use it.",
+    description: "SASE's academic mentoring platform at UM6P, one of the department's holon.ma platforms. About 1,000 students and mentors use it.",
     image: "/astraconnect-cover.jpg",
     tags: ["Django", "DRF", "PostgreSQL", "Next.js", "Microsoft SSO"],
     categories: ["fullstack"],
@@ -163,18 +163,18 @@ export const projects: Project[] = [
   {
     id: "sase-exam",
     title: "SASE Admissions Exam Platform",
-    description: "UM6P's admissions exam platform. It handled 20,000 candidates during the 2026 testing week.",
+    description: "SASE's admissions exam platform at UM6P. It handled 20,000 candidates during the 2026 testing week.",
     image: "/sase-cover.jpg",
     tags: ["Next.js", "Django", "PostgreSQL"],
     categories: ["fullstack"],
-    url: "https://sase-quiz.um6p.ma/login",
+    url: "https://sase-application.um6p.ma/",
     featured: false,
     details:
       "Learner, mentor and admin assessment interfaces with timed quizzes, attempts, autosave and reviews. About 1,000 regular users, and 20,000 candidates during the 2026 admissions week, booking slots in batches to keep server load under control. Fixed production issues affecting submissions, question loading and session expiry.",
     caseStudy: {
       slug: "sase-exam-platform",
       problem:
-        "UM6P's SASE admissions test runs online. During the admissions week thousands of candidates take timed exams, and a crash, a lost answer or an expired session can cost someone their place.",
+        "SASE's admissions test at UM6P runs online. During the admissions week thousands of candidates take timed exams, and a crash, a lost answer or an expired session can cost someone their place.",
       built: [
         "Learner, mentor and admin assessment interfaces.",
         "Timed quizzes with attempts, autosave and reviews.",
@@ -190,8 +190,8 @@ export const projects: Project[] = [
         "Autosave so candidates don't lose answers",
       ],
       chips: ["20,000 candidates", "Timed exams", "Production support"],
-      links: [{ label: "Platform", href: "https://sase-quiz.um6p.ma/login" }],
-      note: "Built at Vanguard Center, UM6P. The code belongs to the university and isn't public.",
+      links: [{ label: "Platform", href: "https://sase-application.um6p.ma/" }],
+      note: "Built at Vanguard Center, UM6P. The code belongs to UM6P and isn't public.",
     }
   },
   {
