@@ -69,7 +69,7 @@ export const projects: Project[] = [
       ],
       chips: ["~1,000 users", "4 user roles", "Microsoft SSO"],
       links: [],
-      note: "The code is private because it's a university platform. Happy to walk through it in an interview.",
+      note: "Built at Vanguard Center, UM6P. The code belongs to UM6P and isn't public. Happy to walk through it in an interview.",
     },
   },
   {
