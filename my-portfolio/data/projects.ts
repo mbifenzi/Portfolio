@@ -47,6 +47,30 @@ export const projects: Project[] = [
     featured: true,
     details:
       "Built alone from functional specifications at Vanguard Center, UM6P, as one of the department's platforms on holon.ma. DRF APIs, PostgreSQL data models, Next.js interfaces and permissions for four user roles. One-to-one and group session scheduling with recurring availability, proposals, rescheduling and conflict detection. QR and manual attendance with expiring check-in tokens, duplicate prevention and audit trails. Programs, cohorts, courses, enrollments and mentor workloads. Microsoft SSO through the shared authentication service used by all the department's holon.ma platforms.",
+    caseStudy: {
+      slug: "astraconnect",
+      problem:
+        "The department needed one platform for academic mentoring: four user roles, one-to-one and group sessions on recurring schedules, attendance records that hold up, and sign-in with the university's Microsoft accounts.",
+      built: [
+        "Django REST Framework APIs and PostgreSQL models for programs, cohorts, courses, enrollments and mentor workloads, built alone from functional specifications.",
+        "One-to-one and group session scheduling with recurring availability, proposals, rescheduling and conflict detection.",
+        "QR and manual attendance with expiring check-in tokens, duplicate prevention and audit trails.",
+        "Next.js interfaces and permissions for four user roles.",
+        "Microsoft SSO through the shared authentication service used by all the department's holon.ma platforms.",
+      ],
+      hardPart: {
+        title: "Attendance you can trust",
+        body: "Attendance is only useful if it can't be faked or counted twice. Check-in QR codes carry tokens that expire, so a code shared after the session doesn't work. A student can only be marked present once per session, and attendance changes are recorded in an audit trail.",
+      },
+      results: [
+        "About 1,000 students and mentors use it",
+        "Four user roles on one platform",
+        "Runs on the department's holon.ma platforms with Microsoft SSO",
+      ],
+      chips: ["~1,000 users", "4 user roles", "Microsoft SSO"],
+      links: [],
+      note: "The code is private because it's a university platform. Happy to walk through it in an interview.",
+    },
   },
   {
     id: "odoo-mentoring",
@@ -243,7 +267,7 @@ export const projects: Project[] = [
     tags: ["Python", "Next.js", "Terminal"],
     categories: ["frontend"],
     group: "professional",
-    featured: false,
+    featured: true,
     details: "Transpiles Python code to C++ and Fortran and runs it in an online terminal.",
     url: "https://pyccel-playground.vercel.app",
     github: "https://github.com/mbifenzi/pyccel-playground",
@@ -256,7 +280,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "Django", "RBAC"],
     categories: ["fullstack"],
     group: "professional",
-    featured: false,
+    featured: true,
     url: "https://labsafe.vercel.app",
     details:
       "Manages lab access permissions, enforces safety compliance and tracks researcher activity, with role-based access control across multiple labs.",
@@ -340,7 +364,7 @@ export const getProjectById = (id: string): Project | undefined => {
   return projects.find((project) => project.id === id)
 }
 
-const caseStudyOrder = ["shared-django-backend", "decorifai", "sase-exam-platform"]
+const caseStudyOrder = ["shared-django-backend", "astraconnect", "decorifai", "sase-exam-platform"]
 
 export const getCaseStudies = (): Project[] => {
   return projects

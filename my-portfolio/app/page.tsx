@@ -125,7 +125,7 @@ export default function Home() {
       <Section id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
         <div className="max-w-5xl mx-auto">
           <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Featured work</SectionHeading>
-          <p className="text-center text-gray-400 mb-10">Three projects in depth: the problem, what I built and the hard part.</p>
+          <p className="text-center text-gray-400 mb-10">Four projects in depth: the problem, what I built and the hard part.</p>
 
           <div className="space-y-8 mb-16">
             {caseStudies.map((project, index) => (
