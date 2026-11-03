@@ -25,8 +25,6 @@ export function ProjectFilter({ className, onFilterChange, activeFilter }: Proje
     { id: "fullstack" as const, label: "FULL STACK" },
     { id: "mobile" as const, label: "MOBILE" },
     { id: "ai" as const, label: "AI" },
-    { id: "blockchain" as const, label: "BLOCKCHAIN" },
-    { id: "iot" as const, label: "IOT" },
   ]
 
   const handleFilterChange = (filter: ProjectCategory | "all") => {

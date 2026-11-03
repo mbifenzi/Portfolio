@@ -23,11 +23,11 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white font-pixel">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="py-6 px-4 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-xl text-green-400 pixel-text-shadow">
+          <Link href="/" className="font-pixel text-xl text-green-400 pixel-text-shadow">
             MOHAMED BIFENZI
           </Link>
           <nav className="hidden md:flex gap-6">
@@ -57,8 +57,8 @@ export default function ProjectsPage() {
           </PixelatedHeading>
 
           <p className="text-center max-w-2xl mx-auto mb-12">
-            Explore my complete portfolio of projects spanning various technologies and domains. Use the filters below
-            to find specific types of projects.
+            Apps I ship on my own, platforms I built at UM6P, and projects from 1337. Use the filters to narrow them
+            down.
           </p>
 
           <ProjectFilter className="mb-12" onFilterChange={handleFilterChange} activeFilter={activeFilter} />
@@ -91,7 +91,6 @@ export default function ProjectsPage() {
       {/* Footer */}
       <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
         <p>© {new Date().getFullYear()} MOHAMED BIFENZI • ALL RIGHTS RESERVED</p>
-        <p className="mt-2 text-gray-500">CRAFTED WITH PRECISION AND PASSION</p>
       </footer>
     </div>
   )
