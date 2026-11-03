@@ -28,6 +28,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "odoo-mentoring",
+    title: "Mentoring Sessions for Odoo 18",
+    description: "An open-source Odoo 18 module: mentoring sessions, attendance, reminders and mentor workload.",
+    image: "/odoo-mentoring-cover.jpg",
+    tags: ["Odoo 18", "Python", "PostgreSQL", "XML views", "Tests"],
+    categories: ["backend", "fullstack"],
+    featured: true,
+    github: "https://github.com/mbifenzi/odoo-mentoring",
+    details:
+      "Built on Odoo's own framework: models with computed and stored fields, Python and SQL constraints (a mentor can't be double-booked, capacity rules), a Draft → Scheduled → Done workflow, attendance lines that follow the student list, an hourly scheduled action that reminds mentors, chatter and activities, groups with record rules so mentors only see their own sessions, and kanban, calendar, pivot and graph views. 13 tests run in GitHub Actions on every push.",
+  },
+  {
     id: "ryddar",
     title: "Ryddar",
     description: "Community app for motorcycle riders: group rides, rider spots, road alerts and SOS. Live on the App Store.",
