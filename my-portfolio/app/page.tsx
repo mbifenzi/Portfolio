@@ -26,7 +26,7 @@ const experience = [
     place: "Vanguard Center, UM6P",
     period: "May 2023 – Present",
     points: [
-      "Built AstraConnect, the academic mentoring platform, alone from functional specifications: DRF APIs, PostgreSQL models, Next.js interfaces and four user roles. About 1,000 students and mentors use it.",
+      "Built AstraConnect, the academic mentoring platform on the department's holon.ma platforms, alone from functional specifications: DRF APIs, PostgreSQL models, Next.js interfaces and four user roles. About 1,000 students and mentors use it.",
       "Worked on the SASE admissions exam platform, which handled 20,000 candidates during the 2026 admissions week. Fixed production issues affecting submissions, question loading and session expiry.",
       "Built intranet features for the mechatronics department and mentored junior frontend developers.",
     ],

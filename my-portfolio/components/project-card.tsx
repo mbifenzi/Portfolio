@@ -43,7 +43,7 @@ export function ProjectCard({ title, description, image, tags, className, github
         )}
       >
         <div className="relative h-48 overflow-hidden group">
-          <Image src={placeholderImage || "/placeholder.svg"} alt={title} fill className="object-cover object-top" />
+          <Image src={placeholderImage || "/placeholder.svg"} alt={title} fill className="object-cover" />
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
             <Button
               variant="outline"
