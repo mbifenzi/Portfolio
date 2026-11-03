@@ -1,12 +1,14 @@
 # mbifenzi.vercel.app
 
+![Preview of the portfolio](https://mbifenzi.vercel.app/opengraph-image)
+
 My portfolio: the apps I ship, the platforms I've built at UM6P, and projects from 1337.
 
 Live at https://mbifenzi.vercel.app
 
 ## Stack
 
-Next.js (App Router), TypeScript, Tailwind CSS and shadcn/ui, deployed on Vercel.
+Next.js (App Router), TypeScript and Tailwind CSS, deployed on Vercel.
 
 ## Run it
 
@@ -22,5 +24,6 @@ Then open http://localhost:3000.
 
 - Projects: `my-portfolio/data/projects.ts` (set `featured: true` to show one on the home page)
 - Experience, education, skills and the intro: `my-portfolio/app/page.tsx`
+- Name, title and hero stats (also used in the link preview): `my-portfolio/data/profile.ts`
 - Resume download: `my-portfolio/public/Mohamed-bifenzi.pdf`
-- Link preview image: `my-portfolio/public/og.png`
+- Favicon and link preview images are generated: `my-portfolio/app/icon.tsx`, `my-portfolio/app/opengraph-image.tsx` and `my-portfolio/app/work/[slug]/opengraph-image.tsx`
