@@ -77,201 +77,204 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white">
       <SiteHeader />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-12 pb-14 md:pt-16">
-        <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-10">
-          <SwitchableAvatar
-            className="w-28 h-28 md:w-36 md:h-36 rounded-xl border border-gray-800 shrink-0"
-            pixelArtSrc="/pixel-art-developer-avatar.png"
-            realPhotoSrc="/real-photo-avatar.png"
-            alt="Mohamed Bifenzi"
-          />
-          <div className="text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">Mohamed Bifenzi</h1>
-            <p className="font-mono text-base md:text-lg text-green-400 mb-4">Software engineer · Python / Django</p>
-            <p className="max-w-2xl text-gray-300 leading-relaxed mb-6">
-              I build business platforms end to end with Python, Django and React: data models, APIs, frontend and
-              production support. I also ship and maintain four apps of my own on the App Store.
+      <main id="content">
+        {/* Hero */}
+        <section className="relative overflow-hidden px-4 pt-12 pb-14 md:pt-16">
+          <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-10">
+            <SwitchableAvatar
+              className="w-28 h-28 md:w-36 md:h-36 rounded-xl border border-gray-800 shrink-0"
+              pixelArtSrc="/pixel-art-developer-avatar.png"
+              realPhotoSrc="/real-photo-avatar.png"
+              alt="Mohamed Bifenzi"
+            />
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">Mohamed Bifenzi</h1>
+              <p className="font-mono text-base md:text-lg text-green-400 mb-4">Software engineer · Python / Django</p>
+              <p className="max-w-2xl text-gray-300 leading-relaxed mb-6">
+                I build business platforms end to end with Python, Django and React: data models, APIs, frontend and
+                production support. I also ship and maintain four apps of my own on the App Store.
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                <a href="#work">
+                  <Button>View work</Button>
+                </a>
+                <a href="/Mohamed-bifenzi.pdf" download>
+                  <Button variant="outline">
+                    <Download className="mr-2 h-4 w-4" /> Resume
+                  </Button>
+                </a>
+                <a href="https://github.com/mbifenzi" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    <Github className="mr-2 h-4 w-4" /> GitHub
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+            {stats.map((stat) => (
+              <div key={stat.label} className="card p-4 text-center">
+                <div className="text-2xl font-semibold">{stat.value}</div>
+                <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured work */}
+        <Section id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Featured work</SectionHeading>
+            <p className="text-center text-gray-400 mb-10">
+              Four projects in depth: the problem, what I built and the hard part.
             </p>
-            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-              <a href="#work">
-                <Button>View work</Button>
-              </a>
+
+            <div className="space-y-8 mb-16">
+              {caseStudies.map((project, index) => (
+                <CaseStudyCard key={project.id} project={project} priority={index === 0} />
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-semibold tracking-tight text-center mb-8">More projects</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {otherFeatured.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  tags={project.tags}
+                  github={project.github}
+                  url={project.url}
+                  details={project.details}
+                  caseStudySlug={project.caseStudy?.slug}
+                />
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Link href="/projects">
+                <Button variant="outline" className="group">
+                  All projects
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Section>
+
+        {/* Experience */}
+        <Section id="experience" className="py-16 px-4 scroll-mt-14">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Experience</SectionHeading>
+            <p className="text-center text-gray-400 max-w-2xl mx-auto mb-10">
+              Writing code since 2019, with 3+ years of professional Python and Django. Before that I studied economics
+              and worked in sales.
+            </p>
+
+            <div className="space-y-6 mb-12">
+              {experience.map((job) => (
+                <div key={job.role + job.period} className="card p-6">
+                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
+                    <h3 className="text-lg font-semibold">
+                      {job.role} <span className="font-normal text-gray-400">· {job.place}</span>
+                    </h3>
+                    <span className="font-mono text-sm text-gray-400 shrink-0">{job.period}</span>
+                  </div>
+                  {job.points.length > 0 && (
+                    <ul className="space-y-2 text-gray-300">
+                      {job.points.map((point) => (
+                        <li key={point} className="flex gap-2">
+                          <span className="text-gray-500">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <SectionHeading className="text-2xl md:text-3xl mb-6 text-center">Education</SectionHeading>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {education.map((item) => (
+                <div key={item.school} className="card p-6">
+                  <h3 className="text-lg font-semibold mb-1">{item.school}</h3>
+                  <p className="text-gray-300">{item.degree}</p>
+                  <p className="font-mono text-sm text-gray-400 mt-2">{item.period}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Skills */}
+        <Section id="skills" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Skills</SectionHeading>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <SkillCard
+                title="Backend"
+                skills={["Python", "Django", "Django REST Framework", "Django Channels", "PostgreSQL", "Redis"]}
+              />
+              <SkillCard
+                title="Frontend & Mobile"
+                skills={["TypeScript", "React", "Next.js", "React Native", "Expo", "Tailwind CSS"]}
+              />
+              <SkillCard title="Tooling" skills={["Git", "Docker", "Linux", "pytest", "CI/CD", "C / C++"]} />
+              <SkillCard
+                title="Integrations"
+                skills={["Microsoft SSO", "Mapbox", "RevenueCat", "Replicate", "Cloudinary"]}
+              />
+            </div>
+            <p className="text-center text-gray-400 mt-6">
+              Languages: Arabic (native), French and English (full professional).
+            </p>
+          </div>
+        </Section>
+
+        {/* Contact */}
+        <Section id="contact" className="py-16 px-4 scroll-mt-14">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Contact</SectionHeading>
+
+            <div className="card p-6 md:p-8 mb-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
+              <div className="text-center md:text-left">
+                <h3 className="text-xl font-semibold mb-2">Mohamed Bifenzi</h3>
+                <p className="text-gray-300 mb-1">Open to new opportunities</p>
+                <p className="flex items-center justify-center md:justify-start gap-1.5 text-gray-400">
+                  <MapPin className="h-4 w-4" /> Rabat, Morocco
+                </p>
+              </div>
+
+              <ul className="space-y-3">
+                {contactLinks.map(({ href, label, icon: Icon }) => (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      target={href.startsWith("mailto:") ? undefined : "_blank"}
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-gray-200 hover:text-green-400 transition-colors"
+                    >
+                      <Icon className="h-5 w-5 shrink-0 text-gray-400" />
+                      <span>{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="text-center">
               <a href="/Mohamed-bifenzi.pdf" download>
                 <Button variant="outline">
-                  <Download className="mr-2 h-4 w-4" /> Resume
-                </Button>
-              </a>
-              <a href="https://github.com/mbifenzi" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline">
-                  <Github className="mr-2 h-4 w-4" /> GitHub
+                  <Download className="mr-2 h-4 w-4" /> Download resume
                 </Button>
               </a>
             </div>
           </div>
-        </div>
-
-        <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
-          {stats.map((stat) => (
-            <div key={stat.label} className="card p-4 text-center">
-              <div className="text-2xl font-semibold">{stat.value}</div>
-              <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured work */}
-      <Section id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
-        <div className="max-w-5xl mx-auto">
-          <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Featured work</SectionHeading>
-          <p className="text-center text-gray-400 mb-10">Four projects in depth: the problem, what I built and the hard part.</p>
-
-          <div className="space-y-8 mb-16">
-            {caseStudies.map((project, index) => (
-              <CaseStudyCard key={project.id} project={project} priority={index === 0} />
-            ))}
-          </div>
-
-          <h3 className="text-2xl font-semibold tracking-tight text-center mb-8">More projects</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {otherFeatured.map((project) => (
-              <ProjectCard
-                key={project.id}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                tags={project.tags}
-                github={project.github}
-                url={project.url}
-                details={project.details}
-                caseStudySlug={project.caseStudy?.slug}
-              />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link href="/projects">
-              <Button variant="outline" className="group">
-                All projects
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Section>
-
-      {/* Experience */}
-      <Section id="experience" className="py-16 px-4 scroll-mt-14">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Experience</SectionHeading>
-          <p className="text-center text-gray-400 max-w-2xl mx-auto mb-10">
-            Writing code since 2019, with 3+ years of professional Python and Django. Before that I studied economics and
-            worked in sales.
-          </p>
-
-          <div className="space-y-6 mb-12">
-            {experience.map((job) => (
-              <div key={job.role + job.period} className="card p-6">
-                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
-                  <h3 className="text-lg font-semibold">
-                    {job.role} <span className="font-normal text-gray-400">· {job.place}</span>
-                  </h3>
-                  <span className="font-mono text-sm text-gray-400 shrink-0">{job.period}</span>
-                </div>
-                {job.points.length > 0 && (
-                  <ul className="space-y-2 text-gray-300">
-                    {job.points.map((point) => (
-                      <li key={point} className="flex gap-2">
-                        <span className="text-gray-500">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <SectionHeading className="text-2xl md:text-3xl mb-6 text-center">Education</SectionHeading>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {education.map((item) => (
-              <div key={item.school} className="card p-6">
-                <h3 className="text-lg font-semibold mb-1">{item.school}</h3>
-                <p className="text-gray-300">{item.degree}</p>
-                <p className="font-mono text-sm text-gray-400 mt-2">{item.period}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Skills */}
-      <Section id="skills" className="py-16 px-4 bg-gray-950 scroll-mt-14">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Skills</SectionHeading>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <SkillCard
-              title="Backend"
-              skills={["Python", "Django", "Django REST Framework", "Django Channels", "PostgreSQL", "Redis"]}
-            />
-            <SkillCard
-              title="Frontend & Mobile"
-              skills={["TypeScript", "React", "Next.js", "React Native", "Expo", "Tailwind CSS"]}
-            />
-            <SkillCard
-              title="Tooling"
-              skills={["Git", "Docker", "Linux", "pytest", "CI/CD", "C / C++"]}
-            />
-            <SkillCard
-              title="Integrations"
-              skills={["Microsoft SSO", "Mapbox", "RevenueCat", "Replicate", "Cloudinary"]}
-            />
-          </div>
-          <p className="text-center text-gray-400 mt-6">Languages: Arabic (native), French and English (full professional).</p>
-        </div>
-      </Section>
-
-      {/* Contact */}
-      <Section id="contact" className="py-16 px-4 scroll-mt-14">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Contact</SectionHeading>
-
-          <div className="card p-6 md:p-8 mb-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-semibold mb-2">Mohamed Bifenzi</h3>
-              <p className="text-gray-300 mb-1">Open to new opportunities</p>
-              <p className="flex items-center justify-center md:justify-start gap-1.5 text-gray-400">
-                <MapPin className="h-4 w-4" /> Rabat, Morocco
-              </p>
-            </div>
-
-            <ul className="space-y-3">
-              {contactLinks.map(({ href, label, icon: Icon }) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    target={href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-200 hover:text-green-400 transition-colors"
-                  >
-                    <Icon className="h-5 w-5 shrink-0 text-gray-400" />
-                    <span>{label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="text-center">
-            <a href="/Mohamed-bifenzi.pdf" download>
-              <Button variant="outline">
-                <Download className="mr-2 h-4 w-4" /> Download resume
-              </Button>
-            </a>
-          </div>
-        </div>
-      </Section>
+        </Section>
+      </main>
 
       <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
         <p className="text-gray-500">© {currentYear} Mohamed Bifenzi</p>

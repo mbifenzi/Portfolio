@@ -10,6 +10,12 @@ const links = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-gray-800 bg-black/90 backdrop-blur">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-green-400 focus:px-3 focus:py-1.5 focus:text-sm focus:font-medium focus:text-black"
+      >
+        Skip to content
+      </a>
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <Link href="/" className="font-semibold tracking-tight whitespace-nowrap">
           <span className="sm:hidden">MB</span>

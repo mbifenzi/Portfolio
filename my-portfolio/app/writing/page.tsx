@@ -15,7 +15,7 @@ export default function WritingPage() {
     <div className="min-h-screen bg-black text-white">
       <SiteHeader />
 
-      <main className="max-w-3xl mx-auto px-4 py-16">
+      <main id="content" className="max-w-3xl mx-auto px-4 py-16">
         <SectionHeading className="text-3xl md:text-4xl mb-4">Writing</SectionHeading>
         <p className="text-gray-400 mb-10">Notes on how I build and run backends and apps.</p>
 
