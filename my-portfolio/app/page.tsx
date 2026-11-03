@@ -160,7 +160,7 @@ export default function Home() {
           <PixelatedHeading className="text-3xl md:text-4xl mb-3 text-center text-green-400">EXPERIENCE</PixelatedHeading>
           <p className="text-center text-gray-400 max-w-2xl mx-auto mb-10">
             Writing code since 2019, with 3+ years of professional Python and Django. Before that I studied economics and
-            worked in sales, so I care about how business software handles workflows, stock and money.
+            worked in sales.
           </p>
 
           <div className="space-y-6 mb-12">
@@ -240,7 +240,7 @@ export default function Home() {
                 <h3 className="text-xl mb-2 text-yellow-400">MOHAMED BIFENZI</h3>
                 <p className="mb-1">Open to new opportunities</p>
                 <p className="mb-4 flex items-center justify-center gap-1 text-gray-400">
-                  <MapPin className="h-4 w-4" /> Rabat, Morocco · open to relocation to Belgium
+                  <MapPin className="h-4 w-4" /> Rabat, Morocco
                 </p>
               </div>
 
