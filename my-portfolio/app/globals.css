@@ -9,19 +9,20 @@
   --card-foreground: 0 0% 100%;
   --popover: 0 0% 5%;
   --popover-foreground: 0 0% 100%;
-  --primary: 262 80% 60%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 142 70% 50%;
+  --primary: 142 69% 58%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 15%;
   --secondary-foreground: 0 0% 100%;
   --muted: 0 0% 15%;
   --muted-foreground: 0 0% 70%;
-  --accent: 32 98% 65%;
-  --accent-foreground: 0 0% 0%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 85% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 0 0% 20%;
-  --input: 0 0% 20%;
-  --ring: 262 80% 60%;
+  --input: 0 0% 25%;
+  --ring: 142 69% 58%;
+  --radius: 0.5rem;
 }
 
 body {
@@ -30,164 +31,19 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Headings, labels and buttons keep the monospace "pixel" look; body text uses a readable sans-serif. */
-.font-pixel,
-h1,
-h2,
-h3,
-h4,
-nav,
-footer,
-.pixel-button,
-.pixel-border-sm {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  letter-spacing: 1px;
-}
-
-/* Pixel Border */
-.pixel-border {
-  border: 4px solid;
-  border-image-slice: 2;
-  border-image-width: 2;
-  border-image-outset: 0;
-  border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='white' /></svg>");
-  image-rendering: pixelated;
-  position: relative;
-}
-
-.pixel-border-sm {
-  border: 2px solid;
-  border-image-slice: 2;
-  border-image-width: 2;
-  border-image-outset: 0;
-  border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='white' /></svg>");
-  image-rendering: pixelated;
-}
-
-/* Pixel Button */
-.pixel-button {
-  transition: all 0.1s;
-  position: relative;
-  background-color: #333;
-  color: white;
-  padding: 0.5rem 1rem;
-  text-transform: uppercase;
-  font-family: "PixelFont", monospace;
-}
-
-.pixel-button:hover {
-  transform: translateY(-2px);
-  background-color: #444;
-}
-
-.pixel-button:active {
-  transform: translateY(2px);
-}
-
-/* Pixel Image */
-.pixel-image {
-  image-rendering: pixelated;
-}
-
-/* Pixel Grid Overlay */
-.pixel-grid-overlay {
-  background-image: linear-gradient(rgba(50, 50, 50, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(50, 50, 50, 0.05) 1px, transparent 1px);
-  background-size: 8px 8px;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-/* Pixel Text Shadow */
-.pixel-text-shadow {
-  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-}
-
-/* Pixel Link */
-.pixel-link {
-  transition: all 0.2s;
-  display: inline-block;
-}
-
-.pixel-link:hover {
-  transform: translateX(4px);
-  color: #f0f0f0;
-}
-
-/* Pixel Progress Bar */
-.pixel-progress {
-  position: relative;
-  overflow: hidden;
-}
-
-.pixel-progress::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 8px 8px;
-  animation: progress-animation 1s linear infinite;
-}
-
-@keyframes progress-animation {
-  0% {
-    background-position: 0 0;
+@layer components {
+  /* Panels: project cards, experience entries, stats */
+  .card {
+    @apply rounded-lg border border-gray-800 bg-gray-900/60;
   }
-  100% {
-    background-position: 16px 0;
-  }
-}
 
-/* Pixel Animation */
-.pixel-animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+  /* Small tech and highlight tags */
+  .chip {
+    @apply rounded-md border border-gray-700/80 bg-gray-800/60 px-2 py-0.5 font-mono text-xs text-gray-300;
+  }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+  /* Bordered link styled like the outline Button, for plain <a> and <Link> */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-md border border-gray-700 bg-black px-4 py-2 text-sm font-medium transition-colors hover:border-gray-500 hover:bg-gray-900;
   }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* Pixel Blinking Cursor */
-.pixel-blink {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Pixel Icon Container */
-.pixel-icon-container {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
 }

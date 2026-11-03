@@ -48,7 +48,7 @@ const layoutCode = `backend/
   scripts/           deploy and backup`
 
 function H2({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-xl md:text-2xl text-green-400 mt-12 mb-4">{children}</h2>
+  return <h2 className="text-xl md:text-2xl font-semibold tracking-tight mt-12 mb-4">{children}</h2>
 }
 
 function P({ children }: { children: React.ReactNode }) {
@@ -57,14 +57,14 @@ function P({ children }: { children: React.ReactNode }) {
 
 function Code({ children }: { children: string }) {
   return (
-    <pre className="pixel-border bg-gray-950 p-4 my-6 overflow-x-auto text-sm leading-relaxed text-gray-200">
-      <code className="font-pixel">{children}</code>
+    <pre className="rounded-lg border border-gray-800 bg-gray-950 p-4 my-6 overflow-x-auto text-sm leading-relaxed text-gray-200">
+      <code className="font-mono">{children}</code>
     </pre>
   )
 }
 
 function C({ children }: { children: React.ReactNode }) {
-  return <code className="font-pixel text-cyan-400 text-[0.9em]">{children}</code>
+  return <code className="font-mono text-green-400 text-[0.9em]">{children}</code>
 }
 
 export default function ArticlePage() {
@@ -73,17 +73,17 @@ export default function ArticlePage() {
       <SiteHeader />
 
       <article className="max-w-3xl mx-auto px-4 py-12">
-        <Link href="/writing" className="font-pixel text-sm text-gray-400 hover:text-green-400 flex items-center gap-2 mb-8">
-          <ArrowLeft className="h-4 w-4" /> ALL WRITING
+        <Link href="/writing" className="text-sm text-gray-400 hover:text-green-400 flex items-center gap-2 mb-8">
+          <ArrowLeft className="h-4 w-4" /> All writing
         </Link>
 
-        <p className="font-pixel text-xs text-cyan-400 mb-2">
-          {article.date.toUpperCase()} · {article.readingTime.toUpperCase()}
+        <p className="font-mono text-sm text-gray-400 mb-2">
+          {article.date} · {article.readingTime}
         </p>
-        <h1 className="text-3xl md:text-4xl text-yellow-400 mb-6">{article.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">{article.title}</h1>
         <p className="text-lg text-gray-300 leading-relaxed mb-8">{article.summary}</p>
 
-        <H2>WHY ONE BACKEND</H2>
+        <H2>Why one backend</H2>
         <P>
           I build and run four iOS apps on my own: Ryddar for motorcycle riders, DecorifAI for AI interior design,
           CartoonifAI for AI portraits and Mood to Drink for drink ideas. They look nothing alike, but underneath they
@@ -96,7 +96,7 @@ export default function ArticlePage() {
           one place, and everything product-specific lives in that product's own Django app.
         </P>
 
-        <H2>ONE DJANGO APP PER PRODUCT</H2>
+        <H2>One Django app per product</H2>
         <P>
           Each product is a normal Django app under <C>products/</C>, with its own models, migrations, admin, serializers,
           URLs and tests. Its endpoints live under its own prefix, like <C>/api/decorifai/</C>, so the mobile apps never
@@ -109,7 +109,7 @@ export default function ArticlePage() {
           suite in CI.
         </P>
 
-        <H2>SHARED AUTH, WITHOUT FORCING SIGN-UP</H2>
+        <H2>Shared auth, without forcing sign-up</H2>
         <P>
           There is one <C>User</C> model for every app, with JWT authentication (SimpleJWT, rotating refresh tokens and a
           blacklist) and Sign in with Apple and Google. But nobody wants to create an account before trying an AI photo
@@ -118,7 +118,7 @@ export default function ArticlePage() {
           installation is linked to their account and nothing is lost.
         </P>
 
-        <H2>CREDITS AS A LEDGER</H2>
+        <H2>Credits as a ledger</H2>
         <P>
           The AI apps sell credits. The first version of anything involving money is usually a <C>balance</C> column, and
           it breaks as soon as the real world shows up: the payment provider retries a webhook, a user double-taps, a
@@ -138,7 +138,7 @@ export default function ArticlePage() {
           support.
         </P>
 
-        <H2>SLOW, EXPENSIVE, SOMETIMES FAILING AI JOBS</H2>
+        <H2>Slow, expensive, sometimes failing AI jobs</H2>
         <P>
           A DecorifAI design or a CartoonifAI portrait runs on Replicate and can take from a few seconds to a minute. The
           API never waits for it. It reserves the credits, starts the prediction with a webhook URL, and returns
@@ -152,7 +152,7 @@ export default function ArticlePage() {
           didn't get, and because the refund also has a unique reference, it can't happen twice.
         </P>
 
-        <H2>RUNNING IT ALONE</H2>
+        <H2>Running it alone</H2>
         <P>
           The backend runs in Docker on a Hetzner server behind Caddy, which handles HTTPS. Every push runs the test suite
           in GitHub Actions, and the production deploy only starts after CI passes. A deploy rebuilds the image,
@@ -160,7 +160,7 @@ export default function ArticlePage() {
           rely on that pipeline: a fix ships only after the same tests pass every time.
         </P>
 
-        <H2>WHAT I'D DO DIFFERENTLY</H2>
+        <H2>What I'd do differently</H2>
         <P>
           The two AI apps grew one after the other, so some of their code (the Replicate and Cloudinary clients, the
           credits operations) is similar rather than shared. I'd extract that into one internal package for AI jobs and
@@ -175,11 +175,11 @@ export default function ArticlePage() {
         </P>
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-wrap gap-4">
-          <Link href="/work/shared-django-backend" className="font-pixel text-sm pixel-border pixel-button px-4 py-2">
-            SEE THE CASE STUDY
+          <Link href="/work/shared-django-backend" className="btn">
+            See the case study
           </Link>
-          <Link href="/#contact" className="font-pixel text-sm pixel-border pixel-button px-4 py-2">
-            GET IN TOUCH
+          <Link href="/#contact" className="btn">
+            Get in touch
           </Link>
         </div>
       </article>

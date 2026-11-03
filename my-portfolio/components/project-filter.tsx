@@ -19,11 +19,11 @@ export function ProjectFilter({ className, onFilterChange, activeFilter }: Proje
   }, [])
 
   const filters = [
-    { id: "all" as const, label: "ALL" },
-    { id: "frontend" as const, label: "FRONTEND" },
-    { id: "backend" as const, label: "BACKEND" },
-    { id: "fullstack" as const, label: "FULL STACK" },
-    { id: "mobile" as const, label: "MOBILE" },
+    { id: "all" as const, label: "All" },
+    { id: "frontend" as const, label: "Frontend" },
+    { id: "backend" as const, label: "Backend" },
+    { id: "fullstack" as const, label: "Full stack" },
+    { id: "mobile" as const, label: "Mobile" },
     { id: "ai" as const, label: "AI" },
   ]
 
@@ -46,10 +46,7 @@ export function ProjectFilter({ className, onFilterChange, activeFilter }: Proje
         <Button
           key={filter.id}
           variant={activeFilter === filter.id ? "default" : "outline"}
-          className={cn(
-            "pixel-border-sm",
-            activeFilter === filter.id ? "bg-purple-600 hover:bg-purple-700" : "hover:text-purple-400",
-          )}
+          size="sm"
           onClick={() => handleFilterChange(filter.id)}
         >
           {filter.label}

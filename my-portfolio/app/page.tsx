@@ -1,23 +1,37 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { PixelatedContainer } from "@/components/pixelated-container"
-import { PixelatedHeading } from "@/components/pixelated-heading"
+import { Section } from "@/components/section"
+import { SectionHeading } from "@/components/section-heading"
 import { ProjectCard } from "@/components/project-card"
 import { CaseStudyCard } from "@/components/case-study-card"
 import { SiteHeader } from "@/components/site-header"
-import { PixelIcon } from "@/components/pixel-icon"
 import { SwitchableAvatar } from "@/components/switchable-avatar"
 import { SkillCard } from "@/components/skill-card"
 import { getCaseStudies, getFeaturedProjects } from "@/data/projects"
-import { Mail, Github, Linkedin, Twitter, ArrowRight, MapPin, Download } from "lucide-react"
+import { Mail, Github, Linkedin, ArrowRight, MapPin, Download } from "lucide-react"
 
 // Pre-calculate the current year to avoid hydration mismatch
 const currentYear = new Date().getFullYear()
 
 const stats = [
-  { value: "4", label: "APPS ON THE APP STORE" },
-  { value: "20,000", label: "CANDIDATES ON THE EXAM PLATFORM" },
-  { value: "~1,000", label: "USERS ON ASTRACONNECT" },
+  { value: "4", label: "apps on the App Store" },
+  { value: "20,000", label: "candidates on the exam platform" },
+  { value: "~1,000", label: "users on AstraConnect" },
+]
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
+
+const contactLinks = [
+  { href: "mailto:mohamedbifenzi1@gmail.com", label: "mohamedbifenzi1@gmail.com", icon: Mail },
+  { href: "https://github.com/mbifenzi", label: "github.com/mbifenzi", icon: Github },
+  { href: "https://www.linkedin.com/in/mohamed-bifenzi/", label: "linkedin.com/in/mohamed-bifenzi", icon: Linkedin },
+  { href: "https://x.com/MBifenzi", label: "@MBifenzi", icon: XIcon },
 ]
 
 const experience = [
@@ -70,35 +84,32 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pt-12 pb-14 md:pt-16">
-        <div className="absolute inset-0 pointer-events-none pixel-grid-overlay"></div>
         <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-10">
           <SwitchableAvatar
-            className="w-28 h-28 md:w-36 md:h-36 pixel-border shrink-0"
+            className="w-28 h-28 md:w-36 md:h-36 rounded-xl border border-gray-800 shrink-0"
             pixelArtSrc="/pixel-art-developer-avatar.png"
             realPhotoSrc="/real-photo-avatar.png"
             alt="Mohamed Bifenzi"
           />
           <div className="text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl text-green-400 pixel-text-shadow mb-3">MOHAMED BIFENZI</h1>
-            <p className="font-pixel text-lg md:text-xl text-yellow-400 mb-4">SOFTWARE ENGINEER · PYTHON / DJANGO</p>
-            <p className="max-w-2xl text-gray-200 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">Mohamed Bifenzi</h1>
+            <p className="font-mono text-base md:text-lg text-green-400 mb-4">Software engineer · Python / Django</p>
+            <p className="max-w-2xl text-gray-300 leading-relaxed mb-6">
               I build business platforms end to end with Python, Django and React: data models, APIs, frontend and
               production support. I also ship and maintain four apps of my own on the App Store.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <a href="#work">
-                <Button variant="outline" className="pixel-border pixel-button">
-                  VIEW WORK
-                </Button>
+                <Button>View work</Button>
               </a>
               <a href="/Mohamed-bifenzi.pdf" download>
-                <Button variant="outline" className="pixel-border pixel-button">
-                  <Download className="mr-2 h-4 w-4" /> RESUME
+                <Button variant="outline">
+                  <Download className="mr-2 h-4 w-4" /> Resume
                 </Button>
               </a>
               <a href="https://github.com/mbifenzi" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="pixel-border pixel-button">
-                  <Github className="mr-2 h-4 w-4" /> GITHUB
+                <Button variant="outline">
+                  <Github className="mr-2 h-4 w-4" /> GitHub
                 </Button>
               </a>
             </div>
@@ -107,18 +118,18 @@ export default function Home() {
 
         <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
           {stats.map((stat) => (
-            <div key={stat.label} className="pixel-border bg-gray-900 p-4 text-center">
-              <div className="font-pixel text-2xl text-green-400">{stat.value}</div>
-              <div className="font-pixel text-xs text-gray-400 mt-1">{stat.label}</div>
+            <div key={stat.label} className="card p-4 text-center">
+              <div className="text-2xl font-semibold">{stat.value}</div>
+              <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* Featured work */}
-      <PixelatedContainer id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+      <Section id="work" className="py-16 px-4 bg-gray-950 scroll-mt-14">
         <div className="max-w-5xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-3 text-center text-purple-400">FEATURED WORK</PixelatedHeading>
+          <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Featured work</SectionHeading>
           <p className="text-center text-gray-400 mb-10">Three projects in depth: the problem, what I built and the hard part.</p>
 
           <div className="space-y-8 mb-16">
@@ -127,7 +138,7 @@ export default function Home() {
             ))}
           </div>
 
-          <h3 className="text-2xl text-center text-blue-400 mb-8">MORE PROJECTS</h3>
+          <h3 className="text-2xl font-semibold tracking-tight text-center mb-8">More projects</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {otherFeatured.map((project) => (
               <ProjectCard
@@ -145,19 +156,19 @@ export default function Home() {
 
           <div className="text-center">
             <Link href="/projects">
-              <Button variant="outline" className="pixel-border pixel-button group">
-                ALL PROJECTS
+              <Button variant="outline" className="group">
+                All projects
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
         </div>
-      </PixelatedContainer>
+      </Section>
 
       {/* Experience */}
-      <PixelatedContainer id="experience" className="py-16 px-4 scroll-mt-14">
+      <Section id="experience" className="py-16 px-4 scroll-mt-14">
         <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-3 text-center text-green-400">EXPERIENCE</PixelatedHeading>
+          <SectionHeading className="text-3xl md:text-4xl mb-3 text-center">Experience</SectionHeading>
           <p className="text-center text-gray-400 max-w-2xl mx-auto mb-10">
             Writing code since 2019, with 3+ years of professional Python and Django. Before that I studied economics and
             worked in sales.
@@ -165,18 +176,18 @@ export default function Home() {
 
           <div className="space-y-6 mb-12">
             {experience.map((job) => (
-              <div key={job.role + job.period} className="pixel-border p-6 bg-gray-900">
+              <div key={job.role + job.period} className="card p-6">
                 <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
-                  <h3 className="text-xl text-yellow-400">
-                    {job.role} <span className="text-gray-400">· {job.place}</span>
+                  <h3 className="text-lg font-semibold">
+                    {job.role} <span className="font-normal text-gray-400">· {job.place}</span>
                   </h3>
-                  <span className="font-pixel text-xs text-cyan-400 shrink-0">{job.period}</span>
+                  <span className="font-mono text-sm text-gray-400 shrink-0">{job.period}</span>
                 </div>
                 {job.points.length > 0 && (
                   <ul className="space-y-2 text-gray-300">
                     {job.points.map((point) => (
                       <li key={point} className="flex gap-2">
-                        <span className="text-green-400">•</span>
+                        <span className="text-gray-500">•</span>
                         <span>{point}</span>
                       </li>
                     ))}
@@ -186,97 +197,88 @@ export default function Home() {
             ))}
           </div>
 
-          <PixelatedHeading className="text-2xl md:text-3xl mb-6 text-center text-blue-400">EDUCATION</PixelatedHeading>
+          <SectionHeading className="text-2xl md:text-3xl mb-6 text-center">Education</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {education.map((item) => (
-              <div key={item.school} className="pixel-border p-6 bg-gray-900">
-                <h3 className="text-lg text-yellow-400 mb-1">{item.school}</h3>
+              <div key={item.school} className="card p-6">
+                <h3 className="text-lg font-semibold mb-1">{item.school}</h3>
                 <p className="text-gray-300">{item.degree}</p>
-                <p className="font-pixel text-xs text-cyan-400 mt-2">{item.period}</p>
+                <p className="font-mono text-sm text-gray-400 mt-2">{item.period}</p>
               </div>
             ))}
           </div>
         </div>
-      </PixelatedContainer>
+      </Section>
 
       {/* Skills */}
-      <PixelatedContainer id="skills" className="py-16 px-4 bg-gray-950 scroll-mt-14">
+      <Section id="skills" className="py-16 px-4 bg-gray-950 scroll-mt-14">
         <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-blue-400">SKILLS</PixelatedHeading>
+          <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Skills</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <SkillCard
               title="Backend"
               skills={["Python", "Django", "Django REST Framework", "Django Channels", "PostgreSQL", "Redis"]}
-              iconColor="text-green-400"
             />
             <SkillCard
               title="Frontend & Mobile"
               skills={["TypeScript", "React", "Next.js", "React Native", "Expo", "Tailwind CSS"]}
-              iconColor="text-blue-400"
             />
             <SkillCard
               title="Tooling"
               skills={["Git", "Docker", "Linux", "pytest", "CI/CD", "C / C++"]}
-              iconColor="text-purple-400"
             />
             <SkillCard
               title="Integrations"
               skills={["Microsoft SSO", "Mapbox", "RevenueCat", "Replicate", "Cloudinary"]}
-              iconColor="text-yellow-400"
             />
           </div>
           <p className="text-center text-gray-400 mt-6">Languages: Arabic (native), French and English (full professional).</p>
         </div>
-      </PixelatedContainer>
+      </Section>
 
       {/* Contact */}
-      <PixelatedContainer id="contact" className="py-16 px-4 scroll-mt-14">
+      <Section id="contact" className="py-16 px-4 scroll-mt-14">
         <div className="max-w-4xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-8 text-center text-red-400">CONTACT</PixelatedHeading>
+          <SectionHeading className="text-3xl md:text-4xl mb-8 text-center">Contact</SectionHeading>
 
-          <div className="pixel-border p-6 bg-gray-900 mb-8">
-            <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
-              <div className="text-center">
-                <h3 className="text-xl mb-2 text-yellow-400">MOHAMED BIFENZI</h3>
-                <p className="mb-1">Open to new opportunities</p>
-                <p className="mb-4 flex items-center justify-center gap-1 text-gray-400">
-                  <MapPin className="h-4 w-4" /> Rabat, Morocco
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <Link href="mailto:mohamedbifenzi1@gmail.com" className="flex items-center gap-2 pixel-link">
-                  <PixelIcon icon={Mail} className="text-red-400" />
-                  <span>mohamedbifenzi1@gmail.com</span>
-                </Link>
-                <Link href="https://github.com/mbifenzi" className="flex items-center gap-2 pixel-link">
-                  <PixelIcon icon={Github} className="text-purple-400" />
-                  <span>github.com/mbifenzi</span>
-                </Link>
-                <Link href="https://www.linkedin.com/in/mohamed-bifenzi/" className="flex items-center gap-2 pixel-link">
-                  <PixelIcon icon={Linkedin} className="text-blue-400" />
-                  <span>linkedin.com/in/mohamed-bifenzi</span>
-                </Link>
-                <Link href="https://x.com/MBifenzi" className="flex items-center gap-2 pixel-link">
-                  <PixelIcon icon={Twitter} className="text-cyan-400" />
-                  <span>@MBifenzi</span>
-                </Link>
-              </div>
+          <div className="card p-6 md:p-8 mb-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-semibold mb-2">Mohamed Bifenzi</h3>
+              <p className="text-gray-300 mb-1">Open to new opportunities</p>
+              <p className="flex items-center justify-center md:justify-start gap-1.5 text-gray-400">
+                <MapPin className="h-4 w-4" /> Rabat, Morocco
+              </p>
             </div>
+
+            <ul className="space-y-3">
+              {contactLinks.map(({ href, label, icon: Icon }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    target={href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-200 hover:text-green-400 transition-colors"
+                  >
+                    <Icon className="h-5 w-5 shrink-0 text-gray-400" />
+                    <span>{label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="text-center">
             <a href="/Mohamed-bifenzi.pdf" download>
-              <Button variant="outline" className="pixel-border pixel-button">
-                DOWNLOAD RESUME
+              <Button variant="outline">
+                <Download className="mr-2 h-4 w-4" /> Download resume
               </Button>
             </a>
           </div>
         </div>
-      </PixelatedContainer>
+      </Section>
 
       <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
-        <p>© {currentYear} MOHAMED BIFENZI</p>
+        <p className="text-gray-500">© {currentYear} Mohamed Bifenzi</p>
       </footer>
     </div>
   )

@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { PixelatedContainer } from "@/components/pixelated-container"
-import { PixelatedHeading } from "@/components/pixelated-heading"
+import { Section } from "@/components/section"
+import { SectionHeading } from "@/components/section-heading"
 import { ProjectCard } from "@/components/project-card"
 import { ProjectFilter } from "@/components/project-filter"
 import { SiteHeader } from "@/components/site-header"
@@ -28,13 +28,11 @@ export default function ProjectsPage() {
       <SiteHeader />
 
       {/* Projects Section */}
-      <PixelatedContainer className="py-16 px-4">
+      <Section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <PixelatedHeading className="text-3xl md:text-4xl mb-4 text-center text-purple-400">
-            ALL PROJECTS
-          </PixelatedHeading>
+          <SectionHeading className="text-3xl md:text-4xl mb-4 text-center">All projects</SectionHeading>
 
-          <p className="text-center max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-400 max-w-2xl mx-auto mb-12">
             Apps I ship on my own, platforms I built at UM6P, and projects from 1337. Use the filters to narrow them
             down.
           </p>
@@ -58,17 +56,17 @@ export default function ProjectsPage() {
 
           <div className="text-center">
             <Link href="/">
-              <Button variant="outline" className="pixel-border pixel-button">
-                BACK TO HOME
+              <Button variant="outline">
+                Back to home
               </Button>
             </Link>
           </div>
         </div>
-      </PixelatedContainer>
+      </Section>
 
       {/* Footer */}
       <footer className="py-6 px-4 text-center text-sm border-t border-gray-800">
-        <p>© {new Date().getFullYear()} MOHAMED BIFENZI</p>
+        <p className="text-gray-500">© {new Date().getFullYear()} Mohamed Bifenzi</p>
       </footer>
     </div>
   )

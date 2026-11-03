@@ -1,13 +1,13 @@
 import type React from "react"
 import { cn } from "@/lib/utils"
 
-interface PixelatedContainerProps {
+interface SectionProps {
   children: React.ReactNode
   className?: string
-  id?: string // Added id prop
+  id?: string
 }
 
-export function PixelatedContainer({ children, className, id }: PixelatedContainerProps) {
+export function Section({ children, className, id }: SectionProps) {
   return (
     <section id={id} className={cn("relative", className)}>
       {children}

@@ -28,6 +28,29 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "astraconnect",
+    title: "AstraConnect",
+    description: "UM6P's academic mentoring platform, part of the department's holon.ma platforms. About 1,000 students and mentors use it.",
+    image: "/astraconnect-cover.jpg",
+    tags: ["Django", "DRF", "PostgreSQL", "Next.js", "Microsoft SSO"],
+    categories: ["fullstack"],
+    featured: true,
+    details:
+      "Built alone from functional specifications at Vanguard Center, UM6P, as one of the department's platforms on holon.ma. DRF APIs, PostgreSQL data models, Next.js interfaces and permissions for four user roles. One-to-one and group session scheduling with recurring availability, proposals, rescheduling and conflict detection. QR and manual attendance with expiring check-in tokens, duplicate prevention and audit trails. Programs, cohorts, courses, enrollments and mentor workloads. Microsoft SSO through the shared authentication service used by all the department's holon.ma platforms.",
+  },
+  {
+    id: "odoo-mentoring",
+    title: "Mentoring Sessions for Odoo 18",
+    description: "Open-source Odoo 18 module for mentoring sessions, attendance, reminders and mentor workload.",
+    image: "/odoo-mentoring-cover.jpg",
+    tags: ["Odoo 18", "Python", "PostgreSQL", "XML views", "Tests"],
+    categories: ["backend", "fullstack"],
+    featured: true,
+    github: "https://github.com/mbifenzi/odoo-mentoring",
+    details:
+      "Built on Odoo's own framework: models with computed and stored fields, Python and SQL constraints (a mentor can't be double-booked, capacity rules), a Draft → Scheduled → Done workflow, attendance lines that follow the student list, an hourly scheduled action that reminds mentors, chatter and activities, groups with record rules so mentors only see their own sessions, and kanban, calendar, pivot and graph views. 13 tests run in GitHub Actions on every push.",
+  },
+  {
     id: "ryddar",
     title: "Ryddar",
     description: "Community app for motorcycle riders: group rides, rider spots, road alerts and SOS. Live on the App Store.",
@@ -136,29 +159,6 @@ export const projects: Project[] = [
       note: "The code is private because it runs production apps. Happy to walk through it in an interview.",
       article: { title: "One Django backend for four App Store apps", href: "/writing/one-backend-four-apps" },
     }
-  },
-  {
-    id: "astraconnect",
-    title: "AstraConnect",
-    description: "UM6P's academic mentoring platform, part of the department's holon.ma platforms. About 1,000 students and mentors use it.",
-    image: "/astraconnect-cover.jpg",
-    tags: ["Django", "DRF", "PostgreSQL", "Next.js", "Microsoft SSO"],
-    categories: ["fullstack"],
-    featured: true,
-    details:
-      "Built alone from functional specifications at Vanguard Center, UM6P, as one of the department's platforms on holon.ma. DRF APIs, PostgreSQL data models, Next.js interfaces and permissions for four user roles. One-to-one and group session scheduling with recurring availability, proposals, rescheduling and conflict detection. QR and manual attendance with expiring check-in tokens, duplicate prevention and audit trails. Programs, cohorts, courses, enrollments and mentor workloads. Microsoft SSO through the shared authentication service used by all the department's holon.ma platforms.",
-  },
-  {
-    id: "odoo-mentoring",
-    title: "Mentoring Sessions for Odoo 18",
-    description: "Open-source Odoo 18 module for mentoring sessions, attendance, reminders and mentor workload.",
-    image: "/odoo-mentoring-cover.jpg",
-    tags: ["Odoo 18", "Python", "PostgreSQL", "XML views", "Tests"],
-    categories: ["backend", "fullstack"],
-    featured: true,
-    github: "https://github.com/mbifenzi/odoo-mentoring",
-    details:
-      "Built on Odoo's own framework: models with computed and stored fields, Python and SQL constraints (a mentor can't be double-booked, capacity rules), a Draft → Scheduled → Done workflow, attendance lines that follow the student list, an hourly scheduled action that reminds mentors, chatter and activities, groups with record rules so mentors only see their own sessions, and kanban, calendar, pivot and graph views. 13 tests run in GitHub Actions on every push.",
   },
   {
     id: "sase-exam",

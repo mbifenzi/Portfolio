@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, image, tags, className, github
     <>
       <div
         className={cn(
-          "pixel-border bg-gray-900 overflow-hidden transition-transform hover:translate-y-[-5px]",
+          "card overflow-hidden transition-colors hover:border-gray-600",
           className,
         )}
       >
@@ -57,12 +57,12 @@ export function ProjectCard({ title, description, image, tags, className, github
         </div>
 
         <div className="p-4">
-          <h3 className="text-xl mb-2 text-yellow-400">{title}</h3>
+          <h3 className="text-xl font-semibold tracking-tight mb-2">{title}</h3>
           <p className="text-sm mb-4 text-gray-300">{description}</p>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {tags.map((tag, index) => (
-              <span key={index} className="text-xs px-2 py-1 bg-gray-800 pixel-border-sm text-cyan-400">
+              <span key={index} className="chip">
                 {tag}
               </span>
             ))}
@@ -74,7 +74,7 @@ export function ProjectCard({ title, description, image, tags, className, github
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
+                className="text-gray-400 hover:text-white transition-colors"
                 aria-label={`GitHub repository for ${title}`}
               >
                 <Github className="h-5 w-5" />
@@ -85,7 +85,7 @@ export function ProjectCard({ title, description, image, tags, className, github
                 href={url.startsWith("http") ? url : `https://${url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-gray-400 hover:text-white transition-colors"
                 aria-label={`Live demo for ${title}`}
               >
                 <ExternalLink className="h-5 w-5" />
@@ -101,7 +101,7 @@ export function ProjectCard({ title, description, image, tags, className, github
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
         >
-          <div className="relative w-full max-w-4xl bg-gray-950 border-8 border-gray-800 overflow-hidden">
+          <div className="relative w-full max-w-4xl bg-gray-950 rounded-lg border border-gray-800 overflow-hidden">
             {/* Close button */}
             <button
               onClick={toggleFullScreen}
@@ -125,14 +125,14 @@ export function ProjectCard({ title, description, image, tags, className, github
 
             {/* Project details */}
             <div className="p-6 bg-gray-900 overflow-y-auto max-h-[30vh]">
-              <h2 className="text-2xl text-yellow-400 mb-4">{title}</h2>
+              <h2 className="text-2xl font-semibold tracking-tight mb-4">{title}</h2>
 
               {details && <p className="text-gray-300 mb-4 whitespace-pre-line">{details}</p>}
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {tags.map((tag, index) => (
-                  <span key={index} className="text-xs px-2 py-1 bg-gray-800 pixel-border-sm text-cyan-400">
+                  <span key={index} className="chip">
                     {tag}
                   </span>
                 ))}
@@ -145,7 +145,7 @@ export function ProjectCard({ title, description, image, tags, className, github
                     href={github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                   >
                     <Github className="h-5 w-5" />
                     <span>View on GitHub</span>
@@ -156,7 +156,7 @@ export function ProjectCard({ title, description, image, tags, className, github
                     href={url.startsWith("http") ? url : `https://${url}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                   >
                     <ExternalLink className="h-5 w-5" />
                     <span>Visit Project</span>
